@@ -43,10 +43,27 @@ function showPerson(person, faction, seatNode) {
   badge.style.background = faction.color;
   badge.style.color = faction.textColor;
   document.getElementById("detailName").textContent = person.name;
-  document.getElementById("detailRole").textContent = person.roles.join(" · ");
+  const detailParts = [];
+  if (person.office) {
+    detailParts.push(person.office);
+  }
+  if (Array.isArray(person.roles) && person.roles.length > 0) {
+    detailParts.push(...person.roles);
+  }
+  document.getElementById("detailRole").textContent = detailParts.join(" · ");
   document.getElementById("detailSeat").textContent = person.seat;
   document.getElementById("detailFaction").textContent = faction.name;
   document.getElementById("detailLink").href = person.profileUrl;
+  const committeesRow = document.getElementById("detailCommitteesRow");
+const committeesValue = document.getElementById("detailCommittees");
+
+if (Array.isArray(person.committees) && person.committees.length > 0) {
+  committeesValue.textContent = person.committees.join(", ");
+  committeesRow.hidden = false;
+} else {
+  committeesValue.textContent = "";
+  committeesRow.hidden = true;
+}
 }
 
 function resetSelection() {

@@ -1,38 +1,57 @@
 [
   {
     "id": "person-l01",
-    "name": "Name ergänzen",
+    "name": "Marcus Pfalzer",
     "faction": "csu",
+    "function": "Mitglied",
     "seat": "L01",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
     ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
+    ],
+    "photo": "",
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l02",
-    "name": "Name ergänzen",
+    "name": "Silke Sagmeister-Eberlein",
     "faction": "csu",
+    "function": "Mitglied",
     "seat": "L02",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l03",
-    "name": "Name ergänzen",
+    "name": "Felix Kölle",
     "faction": "csu",
     "seat": "L03",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l04",
-    "name": "Name ergänzen",
+    "name": "Florian Vogel",
     "faction": "csu",
+    "function": "Fraktionsvorsitzender",
     "seat": "L04",
     "roles": [
       "Stadtratsmitglied"
@@ -43,169 +62,260 @@
     "id": "person-l05",
     "name": "Name ergänzen",
     "faction": "csu",
+    "function": "",
     "seat": "L05",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l06",
-    "name": "Name ergänzen",
+    "name": "Gerhard Rohn",
     "faction": "csu",
+    "function": "",
     "seat": "L06",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l07",
-    "name": "Name ergänzen",
+    "name": "Sebastian Baumann",
     "faction": "csu",
+    "function": "",
     "seat": "L07",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l08",
-    "name": "Name ergänzen",
+    "name": "Fritz Sommer",
     "faction": "ur",
+    "function": "Fraktionsvorsitzender",
     "seat": "L08",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l09",
-    "name": "Name ergänzen",
+    "name": "Ulrich Müller",
     "faction": "ur",
+    "function": "",
     "seat": "L09",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-l10",
-    "name": "Name ergänzen",
+    "name": "Oliver Krauthahn",
     "faction": "ur",
     "seat": "L10",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-u01",
-    "name": "Name ergänzen",
+    "name": "Lissy Berger",
     "faction": "frv",
     "seat": "U01",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-u02",
-    "name": "Name ergänzen",
+    "name": "Michael Hanselmann",
     "faction": "frv",
+    "function": "",
     "seat": "U02",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-u03",
-    "name": "Name ergänzen",
+    "name": "Jutta Striffler",
     "faction": "frv",
     "seat": "U03",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-u04",
-    "name": "Name ergänzen",
+    "name": "Jürgen Holstein",
     "faction": "frv",
     "seat": "U04",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-u05",
-    "name": "Name ergänzen",
+    "name": "Andreas Baur",
     "faction": "frv",
     "seat": "U05",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-r01",
-    "name": "Name ergänzen",
+    "name": "Dr. Thomas Gerlach",
     "faction": "gruene",
     "seat": "R01",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-r02",
-    "name": "Name ergänzen",
+    "name": "Beate Junkersfeld",
     "faction": "gruene",
     "seat": "R02",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-r03",
-    "name": "Name ergänzen",
+    "name": "Gabi Müllender",
     "faction": "gruene",
     "seat": "R03",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-r04",
-    "name": "Name ergänzen",
+    "name": "Peter Staudacher",
     "faction": "spd",
     "seat": "R04",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-r05",
-    "name": "Name ergänzen",
+    "name": "Jürgen Gerlinger",
     "faction": "spd",
     "seat": "R05",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
   {
     "id": "person-r06",
-    "name": "Name ergänzen",
+    "name": "Simone Ehnes",
     "faction": "spd",
     "seat": "R06",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
@@ -214,8 +324,13 @@
     "name": "Name ergänzen",
     "faction": "spd",
     "seat": "R07",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
@@ -224,8 +339,13 @@
     "name": "Name ergänzen",
     "faction": "spd",
     "seat": "R08",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   },
@@ -234,8 +354,13 @@
     "name": "Name ergänzen",
     "faction": "spd",
     "seat": "R09",
+    "office": "Fraktionsvorsitzender",
     "roles": [
       "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Hauptausschuss",
+      "Bauausschuss"
     ],
     "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
   }
