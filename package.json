@@ -11,6 +11,7 @@
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:ui": "playwright test --ui",    
+    "test:report": "playwright show-report",
     "test:all": "npm run validate:data && npm test && npm run test:e2e"
   },
   "repository": {
