@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktiver Sitzplan des Stadtrats Rothenburg ob der Tauber">
+  <title>Stadtrat Rothenburg ob der Tauber – Sitzplan</title>
+  <link rel="stylesheet" href="assets/css/seatmap.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="intro">
+      <p class="eyebrow">Kommunalpolitik verständlich dargestellt</p>
+      <h1>Sitzordnung des Rothenburger Stadtrats</h1>
+      <p class="lead">Die Darstellung orientiert sich am tatsächlichen Sitzungssaal aus Sicht der Besuchertribüne. Einen Sitz anklicken oder mit der Tastatur auswählen, um Details anzuzeigen.</p>
+    </header>
+
+    <section class="seatmap-card" aria-labelledby="map-title">
+      <div class="card-head">
+        <div>
+          <h2 id="map-title">Großer Sitzungssaal</h2>
+          <p>24 gewählte Stadtratsmitglieder · schematische 2D-Draufsicht</p>
+        </div>
+        <button class="secondary-button" id="resetSelection" type="button">Auswahl zurücksetzen</button>
+      </div>
+
+      <div class="layout">
+        <div class="map-wrap">
+          <svg id="seatmap" viewBox="0 0 1040 760" role="img" aria-labelledby="svg-title svg-desc">
+            <title id="svg-title">Sitzordnung des Stadtrats Rothenburg ob der Tauber</title>
+            <desc id="svg-desc">U-förmige Sitzordnung mit 24 nach Fraktionen eingefärbten Sitzen, Stadtspitze, Verwaltung, Gästeplätzen und Monitoren in der Mitte.</desc>
+
+            <defs>
+              <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="5" stdDeviation="8" flood-opacity=".16"/>
+              </filter>
+            </defs>
+
+            <text x="520" y="34" text-anchor="middle" class="zone-label">STADTSPITZE UND VERWALTUNG</text>
+
+            <g class="dais" filter="url(#softShadow)">
+              <rect x="205" y="60" width="630" height="96" rx="18"/>
+            </g>
+
+            <g class="official-row">
+              <g class="official" transform="translate(285 108)">
+                <circle r="24"/><text y="5">V</text><title>Stadtverwaltung</title>
+              </g>
+              <g class="official mayor" transform="translate(415 108)">
+                <circle r="25"/><text y="5">1. BM</text><title>Erster Bürgermeister</title>
+              </g>
+              <g class="official lord-mayor" transform="translate(520 108)">
+                <circle r="30"/><text y="5">OB</text><title>Oberbürgermeister</title>
+              </g>
+              <g class="official mayor" transform="translate(625 108)">
+                <circle r="25"/><text y="5">2. BM</text><title>Zweite Bürgermeisterin</title>
+              </g>
+              <g class="official" transform="translate(730 108)">
+                <circle r="24"/><text y="5">V</text><title>Stadtverwaltung</title>
+              </g>
+              <g class="official guest" transform="translate(786 108)">
+                <circle r="21"/><text y="5">G</text><title>Geladener Gast</title>
+              </g>
+              <g class="official guest" transform="translate(826 108)">
+                <circle r="21"/><text y="5">G</text><title>Geladener Gast</title>
+              </g>
+            </g>
+
+            <g class="tables" filter="url(#softShadow)">
+              <rect x="110" y="180" width="150" height="420" rx="28"/>
+              <rect x="780" y="180" width="150" height="420" rx="28"/>
+              <rect x="240" y="540" width="560" height="120" rx="28"/>
+            </g>
+
+            <g class="monitors" aria-label="Monitore in der Saalmitte">
+              <rect x="438" y="298" width="72" height="50" rx="6"/>
+              <rect x="530" y="298" width="72" height="50" rx="6"/>
+              <rect x="438" y="368" width="72" height="50" rx="6"/>
+              <rect x="530" y="368" width="72" height="50" rx="6"/>
+              <text x="520" y="450" text-anchor="middle">Informationen zu Tagesordnungspunkten</text>
+            </g>
+
+            <g id="seatsLayer"></g>
+
+            <g class="audience">
+              <path d="M315 706 Q520 664 725 706" />
+              <text x="520" y="732" text-anchor="middle">BESUCHERTRIBÜNE · ZUHÖREN, KEIN REDERECHT WÄHREND DER SITZUNG</text>
+            </g>
+          </svg>
+        </div>
+
+        <aside class="info-panel" aria-live="polite">
+          <div id="emptyState">
+            <span class="info-icon" aria-hidden="true">↖</span>
+            <h3>Sitz auswählen</h3>
+            <p>Die Sitzpositionen sind bereits angelegt. Die Personennamen können anschließend in <code>data/persons.json</code> ergänzt werden.</p>
+          </div>
+          <div id="personDetails" hidden>
+            <span id="detailFactionBadge" class="faction-badge"></span>
+            <h3 id="detailName"></h3>
+            <p id="detailRole"></p>
+            <dl>
+              <div><dt>Sitz</dt><dd id="detailSeat"></dd></div>
+              <div><dt>Fraktion</dt><dd id="detailFaction"></dd></div>
+            </dl>
+            <a id="detailLink" class="primary-button" href="#" target="_blank" rel="noopener">Zum Ratsinformationssystem</a>
+          </div>
+        </aside>
+      </div>
+
+      <div id="legend" class="legend" aria-label="Fraktionslegende"></div>
+    </section>
+
+    <section class="explanation">
+      <article><h2>Stadtspitze</h2><p>Der Oberbürgermeister sitzt mittig an der hinteren Reihe. Links davon ist der Platz des ersten Bürgermeisters, rechts der Platz der zweiten Bürgermeisterin.</p></article>
+      <article><h2>Verwaltung und Gäste</h2><p>Weitere Plätze in dieser Reihe sind für die Stadtverwaltung vorgesehen. Die beiden Plätze rechts aus Sicht der Besuchertribüne sind für eingeladene Referentinnen, Referenten oder Gäste.</p></article>
+      <article><h2>Monitore</h2><p>Über die Monitore in der Saalmitte werden Informationen zu Tagesordnungspunkten gezeigt, teilweise anstelle eines Beamers.</p></article>
+    </section>
+  </main>
+  <script src="assets/js/seatmap.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "csu",
+    "name": "Christlich-Soziale Union",
+    "shortName": "CSU",
+    "color": "#202326",
+    "textColor": "#ffffff",
+    "seats": 7
+  },
+  {
+    "id": "ur",
+    "name": "Unabhängige Rothenburger",
+    "shortName": "UR",
+    "color": "#55717f",
+    "textColor": "#ffffff",
+    "seats": 3
+  },
+  {
+    "id": "frv",
+    "name": "Freie Rothenburger Vereinigung",
+    "shortName": "FRV",
+    "color": "#b78b2e",
+    "textColor": "#1c1608",
+    "seats": 5
+  },
+  {
+    "id": "gruene",
+    "name": "Bündnis 90/Die Grünen",
+    "shortName": "Grüne",
+    "color": "#46962b",
+    "textColor": "#ffffff",
+    "seats": 3
+  },
+  {
+    "id": "spd",
+    "name": "Sozialdemokratische Partei Deutschlands",
+    "shortName": "SPD",
+    "color": "#e3000f",
+    "textColor": "#ffffff",
+    "seats": 6
+  }
+]

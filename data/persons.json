@@ -1,0 +1,242 @@
+[
+  {
+    "id": "person-l01",
+    "name": "Name ergänzen",
+    "faction": "csu",
+    "seat": "L01",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l02",
+    "name": "Name ergänzen",
+    "faction": "csu",
+    "seat": "L02",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l03",
+    "name": "Name ergänzen",
+    "faction": "csu",
+    "seat": "L03",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l04",
+    "name": "Name ergänzen",
+    "faction": "csu",
+    "seat": "L04",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l05",
+    "name": "Name ergänzen",
+    "faction": "csu",
+    "seat": "L05",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l06",
+    "name": "Name ergänzen",
+    "faction": "csu",
+    "seat": "L06",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l07",
+    "name": "Name ergänzen",
+    "faction": "csu",
+    "seat": "L07",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l08",
+    "name": "Name ergänzen",
+    "faction": "ur",
+    "seat": "L08",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l09",
+    "name": "Name ergänzen",
+    "faction": "ur",
+    "seat": "L09",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-l10",
+    "name": "Name ergänzen",
+    "faction": "ur",
+    "seat": "L10",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-u01",
+    "name": "Name ergänzen",
+    "faction": "frv",
+    "seat": "U01",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-u02",
+    "name": "Name ergänzen",
+    "faction": "frv",
+    "seat": "U02",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-u03",
+    "name": "Name ergänzen",
+    "faction": "frv",
+    "seat": "U03",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-u04",
+    "name": "Name ergänzen",
+    "faction": "frv",
+    "seat": "U04",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-u05",
+    "name": "Name ergänzen",
+    "faction": "frv",
+    "seat": "U05",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r01",
+    "name": "Name ergänzen",
+    "faction": "gruene",
+    "seat": "R01",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r02",
+    "name": "Name ergänzen",
+    "faction": "gruene",
+    "seat": "R02",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r03",
+    "name": "Name ergänzen",
+    "faction": "gruene",
+    "seat": "R03",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r04",
+    "name": "Name ergänzen",
+    "faction": "spd",
+    "seat": "R04",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r05",
+    "name": "Name ergänzen",
+    "faction": "spd",
+    "seat": "R05",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r06",
+    "name": "Name ergänzen",
+    "faction": "spd",
+    "seat": "R06",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r07",
+    "name": "Name ergänzen",
+    "faction": "spd",
+    "seat": "R07",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r08",
+    "name": "Name ergänzen",
+    "faction": "spd",
+    "seat": "R08",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  },
+  {
+    "id": "person-r09",
+    "name": "Name ergänzen",
+    "faction": "spd",
+    "seat": "R09",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "profileUrl": "https://ratsinfo.rothenburg.de/fraktionen"
+  }
+]
