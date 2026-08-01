@@ -1,0 +1,62 @@
+name: Fehler melden
+description: Einen reproduzierbaren Fehler im Sitzplan melden
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Vielen Dank für die Fehlermeldung. Bitte beschreibe das Problem möglichst nachvollziehbar.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Fehlerbeschreibung
+      description: Was ist passiert?
+      placeholder: Beschreibe den beobachteten Fehler.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Erwartetes Verhalten
+      description: Was hätte stattdessen passieren sollen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Schritte zur Reproduktion
+      placeholder: |
+        1. Seite öffnen
+        2. Sitz auswählen
+        3. ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Gerätetyp
+      options:
+        - Desktop
+        - Smartphone
+        - Tablet
+        - Sonstiges
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser und Version
+      placeholder: Firefox 153, Chrome 140, Safari 19
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Weitere Informationen
+      description: Screenshots, Konsolenmeldungen oder zusätzliche Hinweise.
