@@ -55,3 +55,87 @@ test("verursacht keine horizontale Überbreite", async ({ page }) => {
     dimensions.viewportWidth
   );
 });
+
+test.describe("Monitor-Personendetails", () => {
+  test("zeigt initial die Monitoransicht", async ({ page }) => {
+    await page.goto("/");
+
+    const monitorDefault = page.locator("#monitorDefault");
+    const monitorDetails = page.locator("#monitorPersonDetails");
+
+    await expect(monitorDefault).not.toHaveAttribute("hidden", "");
+    await expect(monitorDefault).toHaveAttribute("aria-hidden", "false");
+
+    await expect(monitorDetails).toHaveAttribute("hidden", "");
+    await expect(monitorDetails).toHaveAttribute("aria-hidden", "true");
+  });
+
+  test("zeigt auf Desktop die ausgewählte Person zentral", async ({
+    page
+  }) => {
+    test.skip(
+      (page.viewportSize()?.width ?? 0) <= 600,
+      "Zentrale Personendetails werden mobil nicht verwendet."
+    );
+
+    await page.goto("/");
+
+    await expect(page.locator(".seat")).toHaveCount(24);
+    await page.locator(".seat").first().click();
+
+    const monitorDefault = page.locator("#monitorDefault");
+    const monitorDetails = page.locator("#monitorPersonDetails");
+
+    await expect(monitorDefault).toHaveAttribute("hidden", "");
+    await expect(monitorDefault).toHaveAttribute("aria-hidden", "true");
+
+    await expect(monitorDetails).not.toHaveAttribute("hidden", "");
+    await expect(monitorDetails).toHaveAttribute("aria-hidden", "false");
+
+    await expect(page.locator("#monitorPersonName")).not.toBeEmpty();
+    await expect(page.locator("#monitorFaction")).not.toBeEmpty();
+  });
+
+  test("stellt nach Reset die Monitore wieder her", async ({ page }) => {
+    test.skip(
+      (page.viewportSize()?.width ?? 0) <= 600,
+      "Zentrale Personendetails werden mobil nicht verwendet."
+    );
+
+    await page.goto("/");
+    await page.locator(".seat").first().click();
+
+    await page
+      .getByRole("button", { name: "Auswahl zurücksetzen" })
+      .click();
+
+    const monitorDefault = page.locator("#monitorDefault");
+    const monitorDetails = page.locator("#monitorPersonDetails");
+
+    await expect(monitorDefault).not.toHaveAttribute("hidden", "");
+    await expect(monitorDefault).toHaveAttribute("aria-hidden", "false");
+
+    await expect(monitorDetails).toHaveAttribute("hidden", "");
+    await expect(monitorDetails).toHaveAttribute("aria-hidden", "true");
+  });
+
+  test("zeigt mobil weiterhin den unteren Detailbereich", async ({
+    page
+  }) => {
+    test.skip(
+      (page.viewportSize()?.width ?? 0) > 600,
+      "Dieser Test ist nur für mobile Ansichten relevant."
+    );
+
+    await page.goto("/");
+    await page.locator(".seat").first().click();
+
+    await expect(page.locator("#personDetails")).toBeVisible();
+
+    await expect(page.locator("#monitorDefault"))
+      .not.toHaveAttribute("hidden", "");
+
+    await expect(page.locator("#monitorPersonDetails"))
+      .toHaveAttribute("hidden", "");
+  });
+});

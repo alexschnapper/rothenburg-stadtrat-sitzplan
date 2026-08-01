@@ -83,6 +83,14 @@ code { background: #f0ece5; border-radius: 5px; padding: .1em .35em; }
   .explanation { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
+  #monitorPersonDetails {
+    display: none;
+  }
+
+  #monitorDefault:not([hidden]) {
+    display: inline;
+  }
+
   .page-shell {
     width: 100%;
     padding: 18px 0 40px;
@@ -149,4 +157,45 @@ code { background: #f0ece5; border-radius: 5px; padding: .1em .35em; }
 }
 .seat-hit-area {
   pointer-events: all;
+}
+
+.monitor-detail-card {
+  fill: rgba(255, 255, 255, 0.96);
+  stroke: #d8d0c4;
+  stroke-width: 2;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.16));
+}
+
+.monitor-faction-accent {
+  fill: #777;
+}
+
+.monitor-detail-faction {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: #6c6861;
+}
+
+.monitor-detail-name {
+  font-size: 22px;
+  font-weight: 850;
+  fill: #24211e;
+}
+
+.monitor-detail-office {
+  font-size: 14px;
+  font-weight: 750;
+  fill: #403b35;
+}
+
+.monitor-detail-roles {
+  font-size: 13px;
+  fill: #6c6861;
+}
+
+.monitor-detail-hint {
+  font-size: 11px;
+  fill: #80796f;
 }

@@ -72,13 +72,82 @@
               <rect x="240" y="540" width="560" height="120" rx="28"/>
             </g>
 
-            <g class="monitors" aria-label="Monitore in der Saalmitte">
-              <rect x="438" y="298" width="72" height="50" rx="6"/>
-              <rect x="530" y="298" width="72" height="50" rx="6"/>
-              <rect x="438" y="368" width="72" height="50" rx="6"/>
-              <rect x="530" y="368" width="72" height="50" rx="6"/>
-              <text x="520" y="450" text-anchor="middle">Informationen zu Tagesordnungspunkten</text>
-            </g>
+            <g
+              id="monitorDefault"
+              class="monitors"
+              aria-hidden="false"
+            >
+            <rect x="438" y="298" width="72" height="50" rx="6"/>
+            <rect x="530" y="298" width="72" height="50" rx="6"/>
+            <rect x="438" y="368" width="72" height="50" rx="6"/>
+            <rect x="530" y="368" width="72" height="50" rx="6"/>
+
+            <text x="520" y="450" text-anchor="middle">
+              Informationen zu Tagesordnungspunkten
+            </text>
+          </g>
+
+          <g
+            id="monitorPersonDetails"
+            class="monitor-person-details"
+            hidden
+            aria-hidden="true"
+          >
+            <rect
+              class="monitor-detail-card"
+              x="390"
+              y="275"
+              width="260"
+              height="180"
+              rx="18"
+            />
+
+            <rect
+              id="monitorFactionAccent"
+              class="monitor-faction-accent"
+              x="390"
+              y="275"
+              width="12"
+              height="180"
+              rx="6"
+            />
+
+            <text
+              id="monitorFaction"
+              class="monitor-detail-faction"
+              x="425"
+              y="312"
+            ></text>
+
+            <text
+              id="monitorPersonName"
+              class="monitor-detail-name"
+              x="425"
+              y="350"
+            ></text>
+
+            <text
+              id="monitorPersonOffice"
+              class="monitor-detail-office"
+              x="425"
+              y="405"
+            ></text>
+
+            <text
+              id="monitorPersonRoles"
+              class="monitor-detail-roles"
+              x="425"
+              y="430"
+            ></text>
+
+            <text
+              class="monitor-detail-hint"
+              x="425"
+              y="448"
+            >
+              Details im Informationsbereich
+            </text>
+          </g>
 
             <g id="seatsLayer"></g>
 
