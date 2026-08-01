@@ -93,12 +93,17 @@ async function init() {
         "aria-label": `${person.name}, ${faction.name}, Sitz ${person.seat}`,
         "aria-pressed": "false"
       });
+      const hitArea = svgEl("circle", {
+        class: "seat-hit-area",
+        r: "30",
+        fill: "transparent"
+      });
       const circle = svgEl("circle", { r: "18", fill: faction.color });
       const text = svgEl("text", { fill: faction.textColor, y: "1" });
       text.textContent = faction.shortName === "Grüne" ? "GR" : faction.shortName;
       const title = svgEl("title");
       title.textContent = `${person.name} – ${faction.shortName}`;
-      group.append(circle, text, title);
+      group.append(hitArea, circle, text, title);
       group.addEventListener("click", () => showPerson(person, faction, group));
       group.addEventListener("keydown", event => {
         if (event.key === "Enter" || event.key === " ") {

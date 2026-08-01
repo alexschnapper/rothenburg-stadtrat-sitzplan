@@ -32,8 +32,18 @@ h1 { font-size: clamp(2rem, 4vw, 4rem); line-height: 1.02; margin: 0; letter-spa
 .secondary-button { background: transparent; border: 1px solid var(--line); cursor: pointer; }
 .secondary-button:hover { background: #f2eee7; }
 .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; }
-.map-wrap { padding: 20px; min-width: 0; overflow: auto; background: linear-gradient(#f8f5ef, #eee7dc); }
-#seatmap { display: block; width: 100%; min-width: 680px; height: auto; }
+.map-wrap {
+  padding: 20px;
+  min-width: 0;
+  overflow: hidden;
+  background: linear-gradient(#f8f5ef, #eee7dc);
+}
+#seatmap {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
 .dais rect { fill: url(#none); fill: #a87750; stroke: #774a2c; stroke-width: 2; }
 .tables rect { fill: var(--wood-light); stroke: #7b4d2e; stroke-width: 3; }
 .zone-label, .audience text { font-weight: 800; letter-spacing: .12em; fill: #746b60; font-size: 13px; }
@@ -73,7 +83,70 @@ code { background: #f0ece5; border-radius: 5px; padding: .1em .35em; }
   .explanation { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .page-shell { width: min(100% - 18px, 1320px); padding-top: 28px; }
-  .card-head { align-items: flex-start; flex-direction: column; }
-  .map-wrap { padding: 8px; }
+  .page-shell {
+    width: 100%;
+    padding: 18px 0 40px;
+  }
+
+  .intro {
+    padding: 0 18px;
+  }
+
+  .intro h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .lead {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .seatmap-card {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .card-head {
+    padding: 18px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .secondary-button {
+    width: 100%;
+  }
+
+  .map-wrap {
+    padding: 4px;
+  }
+
+  .info-panel {
+    padding: 22px 18px;
+    min-height: auto;
+  }
+
+  .info-panel h3 {
+    font-size: 1.35rem;
+  }
+
+  .legend {
+    padding: 18px;
+    gap: 10px 14px;
+  }
+
+  .legend-item {
+    font-size: 0.84rem;
+  }
+
+  .explanation {
+    padding: 0 10px;
+  }
+
+  .explanation article {
+    padding: 18px;
+  }
+}
+.seat-hit-area {
+  pointer-events: all;
 }
