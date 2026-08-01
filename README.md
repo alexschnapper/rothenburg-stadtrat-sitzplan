@@ -8,6 +8,12 @@ Erster funktionsfähiger Prototyp einer interaktiven 2D-Sitzordnung des Stadtrat
 ![Playwright](https://img.shields.io/badge/Tested%20with-Playwright-45ba4b)
 ![Vitest](https://img.shields.io/badge/Unit%20tests-Vitest-6e9f18)
 
+## Projektentwicklung
+
+Die geplanten Ausbaustufen stehen in der [Roadmap](ROADMAP.md).  
+Änderungen werden im [Changelog](CHANGELOG.md) dokumentiert.  
+Hinweise zur Mitarbeit enthält [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Inhalt des MVP
 
 - reale U-förmige Anordnung aus Sicht der Besuchertribüne
@@ -37,18 +43,6 @@ Danach im Browser öffnen:
 
 ```text
 http://localhost:8080
-```
-
-## Auf GitHub veröffentlichen
-
-1. Neues Repository `rothenburg-stadtrat-sitzplan` anlegen.
-2. Dateien in das Repository kopieren.
-3. Unter **Settings → Pages** als Quelle `Deploy from a branch` wählen.
-4. Branch `main`, Verzeichnis `/ (root)` auswählen.
-5. Die veröffentlichte URL lautet anschließend voraussichtlich:
-
-```text
-https://alexschnapper.github.io/rothenburg-stadtrat-sitzplan/
 ```
 
 ## iFrame-Einbindung
