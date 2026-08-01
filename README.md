@@ -2,6 +2,12 @@
 
 Erster funktionsfähiger Prototyp einer interaktiven 2D-Sitzordnung des Stadtrats Rothenburg ob der Tauber.
 
+[![Tests](https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan/actions/workflows/tests.yml)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-online-success)](https://alexschnapper.github.io/rothenburg-stadtrat-sitzplan/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Playwright](https://img.shields.io/badge/Tested%20with-Playwright-45ba4b)
+![Vitest](https://img.shields.io/badge/Unit%20tests-Vitest-6e9f18)
+
 ## Inhalt des MVP
 
 - reale U-förmige Anordnung aus Sicht der Besuchertribüne

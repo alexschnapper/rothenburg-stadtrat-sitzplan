@@ -1,0 +1,39 @@
+{
+  "name": "rothenburg-stadtrat-sitzplan",
+  "version": "1.0.0",
+  "description": "Erster funktionsfähiger Prototyp einer interaktiven 2D-Sitzordnung des Stadtrats Rothenburg ob der Tauber.",
+  "main": "index.js",
+  "scripts": {
+    "serve": "python3 -m http.server 8080",
+    "validate:data": "node scripts/validate-persons.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",    
+    "test:report": "playwright show-report",
+    "test:all": "npm run validate:data && npm test && npm run test:e2e"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan.git"
+  },
+  "keywords": [
+    "stadtrat",
+    "rothenburg",
+    "civic-tech",
+    "seatmap"
+  ],
+  "author": "Alexander Schnapper",
+  "license": "MIT",
+  "private": true,
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan/issues"
+  },
+  "homepage": "https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "vitest": "^4.1.10"
+  }
+}
