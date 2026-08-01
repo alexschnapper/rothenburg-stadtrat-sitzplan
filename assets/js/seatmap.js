@@ -33,6 +33,59 @@ function renderLegend(factions) {
     </span>`).join("");
 }
 
+function truncateText(value, maxLength = 32) {
+  if (!value) {
+    return "";
+  }
+
+  return value.length > maxLength
+    ? `${value.slice(0, maxLength - 1)}…`
+    : value;
+}
+
+function showPersonInMonitor(person, faction) {
+  if (window.matchMedia("(max-width: 600px)").matches) {
+    return;
+  }
+  console.log("Monitor details:", person.name, faction.shortName);
+  const monitorDefault = document.getElementById("monitorDefault");
+  const monitorDetails = document.getElementById("monitorPersonDetails");
+
+  const factionLabel = document.getElementById("monitorFaction");
+  const personName = document.getElementById("monitorPersonName");
+  const personOffice = document.getElementById("monitorPersonOffice");
+  const personRoles = document.getElementById("monitorPersonRoles");
+  const factionAccent = document.getElementById("monitorFactionAccent");
+
+  factionLabel.textContent = faction.shortName;
+  const nameLines = splitText(person.name, 23);
+
+  setSvgTextLines(
+    personName,
+    nameLines,
+    425,
+    348,
+    27
+  );
+  personOffice.textContent = truncateText(person.office, 32);
+
+  const roleText = Array.isArray(person.roles)
+    ? person.roles.join(" · ")
+    : "";
+
+  personRoles.textContent = truncateText(roleText, 38);
+
+  personOffice.style.display = person.office ? "inline" : "none";
+  personRoles.style.display = roleText ? "inline" : "none";
+  factionAccent.style.fill = faction.color;
+
+  monitorDefault.setAttribute("hidden", "");
+  monitorDefault.setAttribute("aria-hidden", "true");
+
+  monitorDetails.removeAttribute("hidden");
+  monitorDetails.setAttribute("aria-hidden", "false");
+}
+
 function showPerson(person, faction, seatNode) {
   document.querySelectorAll(".seat").forEach(el => el.setAttribute("aria-pressed", "false"));
   seatNode.setAttribute("aria-pressed", "true");
@@ -64,12 +117,25 @@ if (Array.isArray(person.committees) && person.committees.length > 0) {
   committeesValue.textContent = "";
   committeesRow.hidden = true;
 }
+showPersonInMonitor(person, faction);
 }
 
 function resetSelection() {
-  document.querySelectorAll(".seat").forEach(el => el.setAttribute("aria-pressed", "false"));
+  document
+  .querySelectorAll(".seat")
+  .forEach(el => el.setAttribute("aria-pressed", "false"));
+
   document.getElementById("emptyState").hidden = false;
   document.getElementById("personDetails").hidden = true;
+
+  const monitorDefault = document.getElementById("monitorDefault");
+  const monitorDetails = document.getElementById("monitorPersonDetails");
+
+  monitorDefault.removeAttribute("hidden");
+  monitorDefault.setAttribute("aria-hidden", "false");
+
+  monitorDetails.setAttribute("hidden", "");
+  monitorDetails.setAttribute("aria-hidden", "true"); 
 }
 
 async function init() {
@@ -122,4 +188,52 @@ async function init() {
       `<p role="alert"><strong>Hinweis:</strong> Die JSON-Daten konnten nicht geladen werden. Starte die Seite über einen lokalen Webserver oder GitHub Pages, nicht direkt als Datei.</p>`);
   }
 }
+
+function setSvgTextLines(element, lines, startX, startY, lineHeight) {
+  element.replaceChildren();
+
+  lines.forEach((line, index) => {
+    const tspan = svgEl("tspan", {
+      x: String(startX),
+      y: String(startY + index * lineHeight)
+    });
+
+    tspan.textContent = line;
+    element.appendChild(tspan);
+  });
+}
+
+function splitText(value, maxLength = 23) {
+  if (!value) {
+    return [];
+  }
+
+  const words = value.split(/\s+/);
+  const lines = [];
+  let currentLine = "";
+
+  for (const word of words) {
+    const candidate = currentLine
+      ? `${currentLine} ${word}`
+      : word;
+
+    if (candidate.length <= maxLength) {
+      currentLine = candidate;
+    } else {
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      currentLine = word;
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+
+  return lines.slice(0, 2);
+}
+
+
 init();
