@@ -1,0 +1,40 @@
+name: Verbesserung vorschlagen
+description: Eine neue Funktion oder gestalterische Verbesserung vorschlagen
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Ausgangslage
+      description: Welches Problem oder welcher Bedarf besteht?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Vorgeschlagene Lösung
+      description: Wie könnte die Verbesserung aussehen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativen
+      description: Welche anderen Lösungen wurden erwogen?
+
+  - type: checkboxes
+    id: areas
+    attributes:
+      label: Betroffener Bereich
+      options:
+        - label: Darstellung
+        - label: Interaktion
+        - label: Barrierefreiheit
+        - label: Datenmodell
+        - label: Tests
+        - label: Einbettung
+        - label: Dokumentation
