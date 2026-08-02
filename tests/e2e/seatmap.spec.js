@@ -139,3 +139,84 @@ test.describe("Monitor-Personendetails", () => {
       .toHaveAttribute("hidden", "");
   });
 });
+
+test.describe("Stadtspitze und Verwaltung", () => {
+  test("zeigt neun konfigurierbare Plätze", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(
+      page.locator("#officialsLayer .official")
+    ).toHaveCount(9);
+  });
+
+  test("zeigt die erwarteten Platztypen", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(
+      page.locator("#officialsLayer .administration")
+    ).toHaveCount(4);
+
+    await expect(
+      page.locator("#officialsLayer .mayor")
+    ).toHaveCount(2);
+
+    await expect(
+      page.locator("#officialsLayer .lord-mayor")
+    ).toHaveCount(1);
+
+    await expect(
+      page.locator("#officialsLayer .guest")
+    ).toHaveCount(2);
+  });
+
+  test("öffnet Details nach Auswahl eines offiziellen Platzes", async ({
+    page
+  }) => {
+    await page.goto("/");
+
+    const official = page.locator(
+      "#officialsLayer .official"
+    ).first();
+
+    await official.click();
+
+    await expect(official).toHaveAttribute(
+      "aria-pressed",
+      "true"
+    );
+
+    await expect(
+      page.locator("#personDetails")
+    ).toBeVisible();
+
+    await expect(
+      page.locator("#detailName")
+    ).not.toBeEmpty();
+
+    await expect(
+      page.locator("#detailCategoryLabel")
+    ).toHaveText("Bereich");
+  });
+
+  test("kann einen offiziellen Platz per Tastatur auswählen", async ({
+    page
+  }) => {
+    await page.goto("/");
+
+    const official = page.locator(
+      "#officialsLayer .official"
+    ).first();
+
+    await official.focus();
+    await page.keyboard.press("Enter");
+
+    await expect(official).toHaveAttribute(
+      "aria-pressed",
+      "true"
+    );
+
+    await expect(
+      page.locator("#personDetails")
+    ).toBeVisible();
+  });
+});

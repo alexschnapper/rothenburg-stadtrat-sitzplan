@@ -1,0 +1,121 @@
+[
+  {
+    "id": "official-v01",
+    "seat": "H01",
+    "shortLabel": "V",
+    "name": "",
+    "office": "Stadtverwaltung",
+    "type": "administration",
+    "x": 170,
+    "y": 110,
+    "radius": 22,
+    "roles": [],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-v02",
+    "seat": "H02",
+    "shortLabel": "V",
+    "name": "",
+    "office": "Stadtverwaltung",
+    "type": "administration",
+    "x": 245,
+    "y": 110,
+    "radius": 22,
+    "roles": [],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-v03",
+    "seat": "H03",
+    "shortLabel": "V",
+    "name": "",
+    "office": "Stadtverwaltung",
+    "type": "administration",
+    "x": 320,
+    "y": 110,
+    "radius": 22,
+    "roles": [],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-bm01",
+    "seat": "H04",
+    "shortLabel": "1. BM",
+    "name": "",
+    "office": "Erster Bürgermeister",
+    "type": "mayor",
+    "x": 415,
+    "y": 110,
+    "radius": 24,
+    "roles": [],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-ob",
+    "seat": "H05",
+    "shortLabel": "OB",
+    "name": "",
+    "office": "Oberbürgermeister",
+    "type": "lord-mayor",
+    "x": 520,
+    "y": 110,
+    "radius": 29,
+    "roles": [
+      "Vorsitzender des Stadtrats"
+    ],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-bm02",
+    "seat": "H06",
+    "shortLabel": "2. BM",
+    "name": "",
+    "office": "Zweite Bürgermeisterin",
+    "type": "mayor",
+    "x": 625,
+    "y": 110,
+    "radius": 24,
+    "roles": [],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-v04",
+    "seat": "H07",
+    "shortLabel": "V",
+    "name": "",
+    "office": "Stadtverwaltung",
+    "type": "administration",
+    "x": 720,
+    "y": 110,
+    "radius": 22,
+    "roles": [],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-g01",
+    "seat": "H08",
+    "shortLabel": "G",
+    "name": "",
+    "office": "Geladener Gast",
+    "type": "guest",
+    "x": 795,
+    "y": 110,
+    "radius": 22,
+    "roles": [],
+    "profileUrl": ""
+  },
+  {
+    "id": "official-g02",
+    "seat": "H09",
+    "shortLabel": "G",
+    "name": "",
+    "office": "Geladener Gast",
+    "type": "guest",
+    "x": 870,
+    "y": 110,
+    "radius": 22,
+    "roles": [],
+    "profileUrl": ""
+  }
+]
