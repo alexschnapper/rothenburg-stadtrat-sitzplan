@@ -156,54 +156,103 @@
               aria-label="Stadtspitze, Verwaltung und geladene Gäste"
             ></g>
 
-            <!-- Standardansicht der vier Informationsmonitore -->
+            <!-- Gemeinsamer zentraler Informationsbildschirm -->
             <g
-              id="monitorDefault"
-              class="monitors"
-              aria-hidden="false"
+              id="centralDisplayFrame"
+              class="central-display-frame"
+              aria-hidden="true"
             >
               <rect
-                x="438"
-                y="298"
-                width="72"
-                height="50"
-                rx="6"
+                class="central-display-shadow"
+                x="338"
+                y="228"
+                width="364"
+                height="244"
+                rx="22"
               />
 
               <rect
-                x="530"
-                y="298"
-                width="72"
-                height="50"
-                rx="6"
+                class="central-display-case"
+                x="346"
+                y="220"
+                width="348"
+                height="236"
+                rx="20"
               />
 
               <rect
-                x="438"
-                y="368"
-                width="72"
-                height="50"
-                rx="6"
+                class="central-display-screen"
+                x="362"
+                y="236"
+                width="316"
+                height="204"
+                rx="12"
               />
 
               <rect
-                x="530"
-                y="368"
-                width="72"
-                height="50"
-                rx="6"
+                class="central-display-stand"
+                x="500"
+                y="456"
+                width="40"
+                height="30"
+                rx="5"
               />
 
+              <rect
+                class="central-display-base"
+                x="466"
+                y="482"
+                width="108"
+                height="12"
+                rx="6"
+              />
+            </g>
+
+            <!-- Leere Ausgangsansicht -->
+            <g
+              id="monitorDefault"
+              class="monitor-default"
+              aria-hidden="false"
+            >
               <text
+                class="monitor-default-eyebrow"
                 x="520"
-                y="450"
+                y="290"
                 text-anchor="middle"
               >
-                Informationen zu Tagesordnungspunkten
+                INFORMATIONSSYSTEM
+              </text>
+
+              <text
+                class="monitor-default-title"
+                x="520"
+                y="334"
+                text-anchor="middle"
+              >
+                Rothenburg ob der Tauber
+              </text>
+
+              <text
+                class="monitor-default-description"
+                x="520"
+                y="374"
+                text-anchor="middle"
+              >
+                Informationen zur Sitzordnung
+              </text>
+
+              <text
+                id="monitorDefaultHint"
+                class="monitor-default-hint"
+                x="520"
+                y="410"
+                text-anchor="middle"
+              >
+                Bitte einen Sitz auswählen
               </text>
             </g>
 
-            <!-- Zentrale Detailanzeige -->
+            <!-- Detailansicht für die ausgewählte Person -->
             <g
               id="monitorPersonDetails"
               class="monitor-person-details"
@@ -211,58 +260,49 @@
               aria-hidden="true"
             >
               <rect
-                class="monitor-detail-card"
-                x="390"
-                y="275"
-                width="260"
-                height="180"
-                rx="18"
-              />
-
-              <rect
                 id="monitorFactionAccent"
                 class="monitor-faction-accent"
-                x="390"
-                y="275"
-                width="12"
-                height="180"
-                rx="6"
+                x="362"
+                y="236"
+                width="10"
+                height="204"
+                rx="5"
               />
 
               <text
                 id="monitorFaction"
                 class="monitor-detail-faction"
-                x="425"
-                y="312"
+                x="392"
+                y="278"
               ></text>
 
               <text
                 id="monitorPersonName"
                 class="monitor-detail-name"
-                x="425"
-                y="350"
+                x="392"
+                y="320"
               ></text>
 
               <text
                 id="monitorPersonOffice"
                 class="monitor-detail-office"
-                x="425"
-                y="405"
+                x="392"
+                y="380"
               ></text>
 
               <text
                 id="monitorPersonRoles"
                 class="monitor-detail-roles"
-                x="425"
-                y="430"
+                x="392"
+                y="410"
               ></text>
 
               <text
                 class="monitor-detail-hint"
-                x="425"
-                y="448"
+                x="392"
+                y="430"
               >
-                Details im Informationsbereich
+                Weitere Details im Informationsbereich
               </text>
             </g>
 

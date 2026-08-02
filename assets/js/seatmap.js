@@ -373,21 +373,21 @@ function showPersonInMonitor(person, faction) {
 
   setSvgTextLines(
     personName,
-    splitText(person.name, 23),
-    425,
-    348,
-    27
+    splitText(person.name, 27),
+    392,
+    320,
+    28
   );
 
   personOffice.textContent =
-    truncateText(person.office, 32);
+    truncateText(person.office, 38);
 
   const roleText = Array.isArray(person.roles)
     ? person.roles.join(" · ")
     : "";
 
   personRoles.textContent =
-    truncateText(roleText, 38);
+    truncateText(roleText, 46);
 
   personOffice.style.display =
     person.office ? "inline" : "none";
@@ -444,12 +444,12 @@ function showOfficialInMonitor(official) {
   setSvgTextLines(
     personName,
     splitText(
-      official.name || official.office,
-      23
+      person?.name || official.office,
+      27
     ),
-    425,
-    348,
-    27
+    392,
+    320,
+    28
   );
 
   personOffice.textContent =
@@ -523,6 +523,7 @@ function showPerson(person, faction, seatNode) {
   });
 
   showPersonInMonitor(person, faction);
+  updateMobileMonitorHint(true);
 }
 
 function showOfficial(official, officialNode) {
@@ -565,6 +566,7 @@ function showOfficial(official, officialNode) {
   });
 
   showOfficialInMonitor(official);
+  updateMobileMonitorHint(true);
 }
 
 function resetSelection() {
@@ -593,6 +595,23 @@ function resetSelection() {
     "aria-hidden",
     "true"
   );
+  updateMobileMonitorHint(false);
+}
+
+function updateMobileMonitorHint(hasSelection) {
+  if (!window.matchMedia("(max-width: 600px)").matches) {
+    return;
+  }
+
+  const hint = document.getElementById("monitorDefaultHint");
+
+  if (!hint) {
+    return;
+  }
+
+  hint.textContent = hasSelection
+    ? "Details unterhalb des Sitzplans"
+    : "Bitte einen Sitz auswählen";
 }
 
 function renderCouncilSeats(
