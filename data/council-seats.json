@@ -1,0 +1,15 @@
+[
+  {
+    "id": "council-member-l01",
+    "seat": "L01",
+    "personId": "person-max-mustermann",
+    "factionId": "csu",
+    "office": "Fraktionsvorsitzender",
+    "roles": [
+      "Stadtratsmitglied"
+    ],
+    "committees": [
+      "Bauausschuss"
+    ]
+  }
+]

@@ -5,7 +5,10 @@
     "shortName": "CSU",
     "color": "#202326",
     "textColor": "#ffffff",
-    "seats": 7
+    "seats": 7,
+    "partyIds": [
+      "csu"
+    ]
   },
   {
     "id": "ur",

@@ -34,16 +34,19 @@ describe("Personendaten", () => {
 
   test("alle Pflichtfelder sind vorhanden", () => {
   const requiredFields = [
-    "id",
-    "name",
-    "faction",
-    "seat",
-    "office",
-    "roles",
-    "committees",
-    "photo",
-    "profileUrl"
-  ];
+  "id",
+  "seat",
+  "name",
+  "office",
+  "faction",
+  "party",
+  "roles",
+  "committees",
+  "photo",
+  "profileUrl",
+  "email",
+  "phone"
+];
 
   const errors = [];
 
@@ -87,6 +90,22 @@ test("Listenfelder besitzen den richtigen Datentyp", () => {
     expect(
       Array.isArray(person.committees),
       `${person.id}: committees muss ein Array sein`
+    ).toBe(true);
+  }
+});
+
+test("Fraktion ist bei allen Stadtratsmitgliedern gesetzt", () => {
+  for (const person of persons) {
+    expect(typeof person.faction).toBe("string");
+    expect(person.faction.length).toBeGreaterThan(0);
+  }
+});
+
+test("Parteizugehörigkeit ist String oder null", () => {
+  for (const person of persons) {
+    expect(
+      person.party === null ||
+        typeof person.party === "string"
     ).toBe(true);
   }
 });

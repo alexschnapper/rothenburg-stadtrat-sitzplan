@@ -1,0 +1,20 @@
+[
+  {
+    "id": "person-max-mustermann",
+    "name": "Max Mustermann",
+    "partyId": "csu",
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-erika-musterfrau",
+    "name": "Erika Musterfrau",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  }
+]
