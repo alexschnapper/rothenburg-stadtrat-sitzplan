@@ -16,7 +16,16 @@ Dieses Projekt verfolgt das Ziel, eine moderne, interaktive und barrierearme Dar
 
 Als Referenz dient der Sitzungssaal des Stadtrats Rothenburg ob der Tauber.
 
-## Projektstatus und Proektentwicklung
+## Aktueller Schwerpunkt
+
+🎨 **v0.4.0 – Making it beautiful**
+
+Aktuell arbeiten wir an einer hochwertigeren, intuitiveren und moderneren
+Darstellung des Ratssaals.
+
+[Fortschritt und offene Aufgaben im Milestone ansehen](https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan/milestone/3)
+
+## Projektstatus und Projektentwicklung
 
 Die geplanten Ausbaustufen stehen in der [Roadmap](ROADMAP.md).  
 Änderungen werden im [Changelog](CHANGELOG.md) dokumentiert.  
@@ -31,10 +40,10 @@ Bereits umgesetzt:
 - GitHub Pages
 - Automatisierte Tests
 - GitHub Actions
+- Konfigurierbare Stadtspitze
 
 Geplant:
 
-- Konfigurierbare Stadtspitze
 - Verbesserte Informationsfläche
 - JavaScript-Widget
 - WordPress-Integration
