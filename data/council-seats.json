@@ -1,15 +1,218 @@
 [
   {
-    "id": "council-member-l01",
+    "id": "council-seat-l01",
     "seat": "L01",
-    "personId": "person-max-mustermann",
+    "personId": "person-l01",
     "factionId": "csu",
-    "office": "Fraktionsvorsitzender",
-    "roles": [
-      "Stadtratsmitglied"
-    ],
-    "committees": [
-      "Bauausschuss"
-    ]
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l02",
+    "seat": "L02",
+    "personId": "person-l02",
+    "factionId": "csu",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l03",
+    "seat": "L03",
+    "personId": "person-l03",
+    "factionId": "csu",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l04",
+    "seat": "L04",
+    "personId": "person-l04",
+    "factionId": "csu",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l05",
+    "seat": "L05",
+    "personId": "person-l05",
+    "factionId": "csu",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l06",
+    "seat": "L06",
+    "personId": "person-l06",
+    "factionId": "csu",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l07",
+    "seat": "L07",
+    "personId": "person-l07",
+    "factionId": "csu",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l08",
+    "seat": "L08",
+    "personId": "person-l08",
+    "factionId": "ur",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l09",
+    "seat": "L09",
+    "personId": "person-l09",
+    "factionId": "ur",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-l10",
+    "seat": "L10",
+    "personId": "person-l10",
+    "factionId": "ur",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-u01",
+    "seat": "U01",
+    "personId": "person-u01",
+    "factionId": "frv",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-u02",
+    "seat": "U02",
+    "personId": "person-u02",
+    "factionId": "frv",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-u03",
+    "seat": "U03",
+    "personId": "person-u03",
+    "factionId": "frv",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-u04",
+    "seat": "U04",
+    "personId": "person-u04",
+    "factionId": "frv",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-u05",
+    "seat": "U05",
+    "personId": "person-u05",
+    "factionId": "frv",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r01",
+    "seat": "R01",
+    "personId": "person-r01",
+    "factionId": "gruene",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r02",
+    "seat": "R02",
+    "personId": "person-r02",
+    "factionId": "gruene",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r03",
+    "seat": "R03",
+    "personId": "person-r03",
+    "factionId": "gruene",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r04",
+    "seat": "R04",
+    "personId": "person-r04",
+    "factionId": "spd",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r05",
+    "seat": "R05",
+    "personId": "person-r05",
+    "factionId": "spd",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r06",
+    "seat": "R06",
+    "personId": "person-r06",
+    "factionId": "spd",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r07",
+    "seat": "R07",
+    "personId": "person-r07",
+    "factionId": "spd",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r08",
+    "seat": "R08",
+    "personId": "person-r08",
+    "factionId": "spd",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
+  },
+  {
+    "id": "council-seat-r09",
+    "seat": "R09",
+    "personId": "person-r09",
+    "factionId": "spd",
+    "office": "",
+    "roles": ["Stadtratsmitglied"],
+    "committees": []
   }
 ]

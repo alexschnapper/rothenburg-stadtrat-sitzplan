@@ -1,16 +1,214 @@
 [
   {
-    "id": "person-max-mustermann",
-    "name": "Max Mustermann",
-    "partyId": "csu",
+    "id": "person-l01",
+    "name": "Marcus Pfalzer",
+    "partyId": null,
     "photo": "",
     "profileUrl": "",
     "email": "",
     "phone": ""
   },
   {
-    "id": "person-erika-musterfrau",
-    "name": "Erika Musterfrau",
+    "id": "person-l02",
+    "name": "Silke Sagmeister-Eberlein",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l03",
+    "name": "Felix Kölle",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l04",
+    "name": "Florian Vogel",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l05",
+    "name": "test",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l06",
+    "name": "Gerhard Rohn",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l07",
+    "name": "Sebastian Baumann",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l08",
+    "name": "Fritz Sommer",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l09",
+    "name": "Ulrich Müller",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-l10",
+    "name": "Oliver Krauthahn",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-u01",
+    "name": "Lissy Berger",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-u02",
+    "name": "Michael Hanselmann",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-u03",
+    "name": "Jutta Striffler",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-u04",
+    "name": "Jürgen Holstein",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-u05",
+    "name": "Anreas Baur",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r01",
+    "name": "Dr. Thomas Gerlach",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r02",
+    "name": "Beate Junkersfeld",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r03",
+    "name": "Gabi Müllender",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r04",
+    "name": "Peter Staudacher",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r05",
+    "name": "Jürgen Gerlinger",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r06",
+    "name": "Simone Ehnes",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r07",
+    "name": "Michael Benz",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r08",
+    "name": "test",
+    "partyId": null,
+    "photo": "",
+    "profileUrl": "",
+    "email": "",
+    "phone": ""
+  },
+  {
+    "id": "person-r09",
+    "name": "Stefan Reihs",
     "partyId": null,
     "photo": "",
     "profileUrl": "",

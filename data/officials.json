@@ -2,120 +2,111 @@
   {
     "id": "official-v01",
     "seat": "H01",
+    "personId": null,
     "shortLabel": "V",
-    "name": "",
     "office": "Stadtverwaltung",
     "type": "administration",
+    "roles": [],
     "x": 170,
     "y": 110,
-    "radius": 22,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 22
   },
   {
     "id": "official-v02",
     "seat": "H02",
+    "personId": null,
     "shortLabel": "V",
-    "name": "",
     "office": "Stadtverwaltung",
     "type": "administration",
+    "roles": [],
     "x": 245,
     "y": 110,
-    "radius": 22,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 22
   },
   {
     "id": "official-v03",
     "seat": "H03",
+    "personId": null,
     "shortLabel": "V",
-    "name": "",
     "office": "Stadtverwaltung",
     "type": "administration",
+    "roles": [],
     "x": 320,
     "y": 110,
-    "radius": 22,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 22
   },
   {
     "id": "official-bm01",
     "seat": "H04",
+    "personId": null,
     "shortLabel": "1. BM",
-    "name": "",
     "office": "Erster Bürgermeister",
     "type": "mayor",
+    "roles": [],
     "x": 415,
     "y": 110,
-    "radius": 24,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 24
   },
   {
     "id": "official-ob",
     "seat": "H05",
+    "personId": null,
     "shortLabel": "OB",
-    "name": "",
     "office": "Oberbürgermeister",
     "type": "lord-mayor",
-    "x": 520,
-    "y": 110,
-    "radius": 29,
     "roles": [
       "Vorsitzender des Stadtrats"
     ],
-    "profileUrl": ""
+    "x": 520,
+    "y": 110,
+    "radius": 29
   },
   {
     "id": "official-bm02",
     "seat": "H06",
+    "personId": null,
     "shortLabel": "2. BM",
-    "name": "",
     "office": "Zweite Bürgermeisterin",
     "type": "mayor",
+    "roles": [],
     "x": 625,
     "y": 110,
-    "radius": 24,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 24
   },
   {
     "id": "official-v04",
     "seat": "H07",
+    "personId": null,
     "shortLabel": "V",
-    "name": "",
     "office": "Stadtverwaltung",
     "type": "administration",
+    "roles": [],
     "x": 720,
     "y": 110,
-    "radius": 22,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 22
   },
   {
     "id": "official-g01",
     "seat": "H08",
+    "personId": null,
     "shortLabel": "G",
-    "name": "",
     "office": "Geladener Gast",
     "type": "guest",
+    "roles": [],
     "x": 795,
     "y": 110,
-    "radius": 22,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 22
   },
   {
     "id": "official-g02",
     "seat": "H09",
+    "personId": null,
     "shortLabel": "G",
-    "name": "",
     "office": "Geladener Gast",
     "type": "guest",
+    "roles": [],
     "x": 870,
     "y": 110,
-    "radius": 22,
-    "roles": [],
-    "profileUrl": ""
+    "radius": 22
   }
 ]
