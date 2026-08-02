@@ -2,32 +2,14 @@ import { describe, expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const officials = JSON.parse(
-  readFileSync(
-    resolve("data/officials.json"),
-    "utf8"
-  )
-);
+function readJson(path) {
+  return JSON.parse(
+    readFileSync(resolve(path), "utf8")
+  );
+}
 
-const requiredFields = [
-  "id",
-  "seat",
-  "shortLabel",
-  "name",
-  "office",
-  "type",
-  "faction",
-  "party",
-  "roles",
-  "committees",
-  "photo",
-  "profileUrl",
-  "email",
-  "phone",
-  "x",
-  "y",
-  "radius"
-];
+const people = readJson("data/people.json");
+const officials = readJson("data/officials.json");
 
 const allowedTypes = [
   "administration",
@@ -36,32 +18,66 @@ const allowedTypes = [
   "guest"
 ];
 
-describe("Official-Daten", () => {
-  test("enthält neun Plätze", () => {
+const requiredFields = [
+  "id",
+  "seat",
+  "personId",
+  "shortLabel",
+  "office",
+  "type",
+  "roles",
+  "x",
+  "y",
+  "radius"
+];
+
+describe("Official-Zuordnungen", () => {
+  test("enthält genau neun Plätze", () => {
     expect(officials).toHaveLength(9);
   });
 
-  test("jede ID ist eindeutig", () => {
+  test("jede Official-ID ist eindeutig", () => {
     const ids = officials.map((official) => official.id);
 
     expect(new Set(ids).size).toBe(officials.length);
   });
 
   test("jede Sitzkennung ist eindeutig", () => {
-    const seats = officials.map((official) => official.seat);
+    const counts = new Map();
 
-    expect(new Set(seats).size).toBe(officials.length);
+    for (const official of officials) {
+      counts.set(
+        official.seat,
+        (counts.get(official.seat) ?? 0) + 1
+      );
+    }
+
+    const duplicates = [...counts.entries()]
+      .filter(([, count]) => count > 1)
+      .map(([seat, count]) => `${seat} (${count}×)`);
+
+    expect(
+      duplicates,
+      `Doppelte Sitzkennungen: ${duplicates.join(", ")}`
+    ).toEqual([]);
   });
 
   test("alle Pflichtfelder sind vorhanden", () => {
+    const errors = [];
+
     for (const official of officials) {
-      for (const field of requiredFields) {
-        expect(
-          Object.hasOwn(official, field),
-          `${official.id}: Feld "${field}" fehlt`
-        ).toBe(true);
+      const missingFields = requiredFields.filter(
+        (field) => !Object.hasOwn(official, field)
+      );
+
+      if (missingFields.length > 0) {
+        errors.push(
+          `${official.id}: ${missingFields.join(", ")}`
+        );
       }
     }
+
+    expect(errors, errors.join("\n")).toEqual([]);
   });
 
   test("verwendet nur bekannte Official-Typen", () => {
@@ -73,79 +89,78 @@ describe("Official-Daten", () => {
     }
   });
 
-  test("Listenfelder sind Arrays", () => {
+  test("personId ist String oder null", () => {
+    for (const official of officials) {
+      expect(
+        official.personId === null ||
+          typeof official.personId === "string",
+        `${official.id}: personId muss String oder null sein`
+      ).toBe(true);
+    }
+  });
+
+  test("gesetzte Personenreferenzen sind gültig", () => {
+    const personIds = new Set(
+      people.map((person) => person.id)
+    );
+
+    for (const official of officials) {
+      if (official.personId === null) {
+        continue;
+      }
+
+      expect(
+        personIds.has(official.personId),
+        `${official.id}: unbekannte personId "${official.personId}"`
+      ).toBe(true);
+    }
+  });
+
+  test("roles ist immer ein Array", () => {
     for (const official of officials) {
       expect(
         Array.isArray(official.roles),
         `${official.id}: roles muss ein Array sein`
       ).toBe(true);
-
-      expect(
-        Array.isArray(official.committees),
-        `${official.id}: committees muss ein Array sein`
-      ).toBe(true);
     }
   });
 
-  test("optionale Zuordnungen sind String oder null", () => {
+  test("Positionen und Radius sind gültige Zahlen", () => {
     for (const official of officials) {
       expect(
-        official.faction === null ||
-          typeof official.faction === "string"
+        Number.isFinite(official.x),
+        `${official.id}: x muss eine Zahl sein`
       ).toBe(true);
 
       expect(
-        official.party === null ||
-          typeof official.party === "string"
+        Number.isFinite(official.y),
+        `${official.id}: y muss eine Zahl sein`
       ).toBe(true);
+
+      expect(
+        Number.isFinite(official.radius),
+        `${official.id}: radius muss eine Zahl sein`
+      ).toBe(true);
+
+      expect(
+        official.radius,
+        `${official.id}: radius muss größer als 0 sein`
+      ).toBeGreaterThan(0);
     }
   });
+  test("jede Position ist eindeutig", () => {
+    const positions = officials.map(
+      (official) => `${official.x}:${official.y}`
+    );
 
-  test("Position und Radius sind gültige Zahlen", () => {
-    for (const official of officials) {
-      expect(Number.isFinite(official.x)).toBe(true);
-      expect(Number.isFinite(official.y)).toBe(true);
-      expect(Number.isFinite(official.radius)).toBe(true);
-      expect(official.radius).toBeGreaterThan(0);
-    }
-  });
-});
+    const duplicates = positions.filter(
+      (position, index) =>
+        positions.indexOf(position) !== index
+    );
 
-describe("Stadtspitze und Verwaltung", () => {
-  test("enthält neun Plätze", () => {
-    expect(officials).toHaveLength(9);
-  });
-
-  test("jede ID und Sitznummer ist eindeutig", () => {
-    const ids = officials.map((item) => item.id);
-    const seats = officials.map((item) => item.seat);
-
-    expect(new Set(ids).size).toBe(officials.length);
-    expect(new Set(seats).size).toBe(officials.length);
-  });
-
-  test("jeder Platz enthält die Pflichtfelder", () => {
-    const requiredFields = [
-      "id",
-      "seat",
-      "shortLabel",
-      "name",
-      "office",
-      "type",
-      "x",
-      "y",
-      "radius",
-      "roles",
-      "profileUrl"
-    ];
-
-    for (const official of officials) {
-      for (const field of requiredFields) {
-        expect(
-          Object.hasOwn(official, field),
-          `${official.id}: ${field} fehlt`
-        ).toBe(true);
-      }
-    }
+    expect(
+      duplicates,
+      `Doppelte Positionen: ${duplicates.join(", ")}`
+    ).toEqual([]);
   });
 });
