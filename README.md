@@ -1,6 +1,4 @@
-# Rothenburg Stadtrat – interaktiver Sitzplan
-
-Erster funktionsfähiger Prototyp einer interaktiven 2D-Sitzordnung des Stadtrats Rothenburg ob der Tauber.
+# Interaktiver Sitzplan für kommunale Gremien
 
 [![Tests](https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan/actions/workflows/tests.yml)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-online-success)](https://alexschnapper.github.io/rothenburg-stadtrat-sitzplan/)
@@ -8,93 +6,74 @@ Erster funktionsfähiger Prototyp einer interaktiven 2D-Sitzordnung des Stadtrat
 ![Playwright](https://img.shields.io/badge/Tested%20with-Playwright-45ba4b)
 ![Vitest](https://img.shields.io/badge/Unit%20tests-Vitest-6e9f18)
 
-## Projektentwicklung
+Referenzimplementierung für den Stadtrat Rothenburg ob der Tauber.
+
+## Ziel des Projekts
+
+Viele kommunale Sitzpläne werden ausschließlich als PDF oder Bild oder auch gar nicht veröffentlicht.
+
+Dieses Projekt verfolgt das Ziel, eine moderne, interaktive und barrierearme Darstellung zu entwickeln, die langfristig auch für andere Kommunen wiederverwendbar sein kann.
+
+Als Referenz dient der Sitzungssaal des Stadtrats Rothenburg ob der Tauber.
+
+## Projektstatus und Proektentwicklung
 
 Die geplanten Ausbaustufen stehen in der [Roadmap](ROADMAP.md).  
 Änderungen werden im [Changelog](CHANGELOG.md) dokumentiert.  
-Hinweise zur Mitarbeit enthält [CONTRIBUTING.md](CONTRIBUTING.md).
+Eine ausführliche Beschreibung der lokalen Entwicklung findest du in [CONTRIBUTING.md](CONTRIBUTING.md).
+
+🚧 Dieses Projekt befindet sich in aktiver Entwicklung.
+
+Bereits umgesetzt:
+
+- Interaktiver Sitzplan
+- Responsive Darstellung
+- GitHub Pages
+- Automatisierte Tests
+- GitHub Actions
+
+Geplant:
+
+- Konfigurierbare Stadtspitze
+- Verbesserte Informationsfläche
+- JavaScript-Widget
+- WordPress-Integration
 
 ## Inhalt des MVP
+MVP (Minimum Viable Product)
 
-- reale U-förmige Anordnung aus Sicht der Besuchertribüne
-- 24 Sitze nach Fraktionen:
-  - 7 CSU
-  - 3 UR
-  - 5 FRV
-  - 3 Grüne
-  - 6 SPD
-- Stadtspitze mit 1. Bürgermeister, Oberbürgermeister und 2. Bürgermeisterin
-- Plätze für Verwaltung und zwei geladene Gäste
-- Monitore in der Mitte
-- anklickbare und per Tastatur bedienbare Sitze
-- responsive Darstellung
-- Daten getrennt in JSON-Dateien
-- geeignet für GitHub Pages und iFrame-Einbindung
+Der aktuelle Stand des Projekts umfasst:
 
-## Lokal starten
+- interaktive Darstellung des Sitzungssaals
+- 24 Sitzplätze mit Fraktionszuordnung
+- Detailinformationen zu Ratsmitgliedern
+- responsive Darstellung für Desktop und Smartphone
+- GitHub Pages Demo
+- automatisierte Tests mit Vitest und Playwright
+- Datenvalidierung
 
-Da die JSON-Dateien per `fetch()` geladen werden, bitte einen kleinen lokalen Webserver verwenden:
+## Lokale Entwicklung
 
-```bash
-python3 -m http.server 8080
-```
+git clone ...
 
-Danach im Browser öffnen:
+cd rothenburg-stadtrat-sitzplan
 
-```text
-http://localhost:8080
-```
+npm ci
 
-## iFrame-Einbindung
+npm run serve
 
-```html
+## iFrame Einbindung
 <iframe
   src="https://alexschnapper.github.io/rothenburg-stadtrat-sitzplan/"
-  title="Sitzordnung des Stadtrats Rothenburg ob der Tauber"
   width="100%"
-  height="980"
+  height="900"
   loading="lazy"
-  style="border:0; max-width:1400px;"
 ></iframe>
-```
 
-## Personennamen ergänzen
+## Geplant
 
-Die Datei `data/persons.json` enthält aktuell Platzhalter. Das Sitzschema:
+JavaScript Widget
 
-- `L01` bis `L07`: CSU, links von oben nach unten
-- `L08` bis `L10`: UR, links anschließend
-- `U01` bis `U05`: FRV, untere Reihe von links nach rechts
-- `R01` bis `R03`: Grüne, rechts von unten nach oben
-- `R04` bis `R09`: SPD, rechts anschließend nach oben
+WordPress Plugin
 
-Beispiel:
-
-```json
-{
-  "id": "person-l01",
-  "name": "Vorname Nachname",
-  "faction": "csu",
-  "seat": "L01",
-  "roles": ["Stadtratsmitglied"],
-  "profileUrl": "https://ratsinfo.rothenburg.de/..."
-}
-```
-
-## Nächste Ausbaustufen
-
-- tatsächliche Personennamen und Profillinks eintragen
-- Positionen anhand einer nummerierten Sitzskizze feinjustieren
-- direkt einbettbares JavaScript-Widget
-- optionales WordPress-Plugin mit Shortcode und Gutenberg-Block
-- Exportansicht für SVG/PNG/PDF
-- alternative Darstellung mit Namen direkt am Sitz
-- Legislaturperioden als getrennte Datensätze
-
-## Farbhinweis
-
-Der FRV-Farbton ist aktuell als Arbeitswert `#b78b2e` angelegt und orientiert sich an einem warmen Ocker-/Goldton. Er kann in `data/factions.json` unkompliziert angepasst werden.
-
-## Lizenz
-
-MIT
+Web Component
