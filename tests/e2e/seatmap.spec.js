@@ -220,3 +220,102 @@ test.describe("Stadtspitze und Verwaltung", () => {
     ).toBeVisible();
   });
 });
+test("zeigt einen zentralen Informationsbildschirm", async ({
+  page
+}) => {
+  await page.goto("/");
+
+  await expect(
+    page.locator("#centralDisplayFrame")
+  ).toHaveCount(1);
+
+  await expect(
+    page.locator(
+      "#centralDisplayFrame .central-display-screen"
+    )
+  ).toHaveCount(1);
+
+  await expect(
+    page.locator("#monitorDefault")
+  ).not.toHaveAttribute("hidden", "");
+});
+test("behält den Displayrahmen nach Personenauswahl", async ({
+  page
+}) => {
+  test.skip(
+    (page.viewportSize()?.width ?? 0) <= 600,
+    "Die zentrale Detailanzeige wird mobil nicht verwendet."
+  );
+
+  await page.goto("/");
+
+  await page.locator(".seat").first().click();
+
+  await expect(
+    page.locator("#centralDisplayFrame")
+  ).toHaveCount(1);
+
+  await expect(
+    page.locator("#monitorPersonDetails")
+  ).not.toHaveAttribute("hidden", "");
+
+  await expect(
+    page.locator("#monitorPersonDetails")
+  ).toHaveAttribute("aria-hidden", "false");
+});
+test("aktualisiert mobil den Hinweis im zentralen Display", async ({
+  page
+}) => {
+  test.skip(
+    (page.viewportSize()?.width ?? 0) > 600,
+    "Dieser Test ist nur für mobile Ansichten relevant."
+  );
+
+  await page.goto("/");
+
+  const hint = page.locator("#monitorDefaultHint");
+
+  await expect(hint).toHaveText(
+    "Bitte einen Sitz auswählen"
+  );
+
+  await page.locator(".seat").first().click();
+
+  await expect(hint).toHaveText(
+    "Details unterhalb des Sitzplans"
+  );
+
+  await expect(
+    page.locator("#monitorPersonDetails")
+  ).toHaveAttribute("hidden", "");
+
+  await expect(
+    page.locator("#personDetails")
+  ).toBeVisible();
+});
+test("setzt mobil den Monitorhinweis zurück", async ({
+  page
+}) => {
+  test.skip(
+    (page.viewportSize()?.width ?? 0) > 600,
+    "Dieser Test ist nur für mobile Ansichten relevant."
+  );
+
+  await page.goto("/");
+
+  const hint = page.locator("#monitorDefaultHint");
+
+  await page.locator(".seat").first().click();
+
+  await expect(hint).toHaveText(
+    "Details unterhalb des Sitzplans"
+  );
+
+  await page
+    .getByRole("button", { name: "Auswahl zurücksetzen" })
+    .click();
+
+  await expect(hint).toHaveText(
+    "Bitte einen Sitz auswählen"
+  );
+});

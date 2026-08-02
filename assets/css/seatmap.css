@@ -235,24 +235,135 @@ h1 {
   display: none;
 }
 
-.monitors rect {
-  fill: #202428;
-  stroke: #050607;
-  stroke-width: 3;
+/* Zentraler Informationsbildschirm */
+
+.central-display-frame {
+  pointer-events: none;
 }
 
-.monitors text {
-  font-size: 13px;
-  font-weight: 700;
-  fill: #68635c;
+.central-display-shadow {
+  fill: rgba(45, 39, 33, 0.15);
+  filter: blur(4px);
 }
 
-.monitor-detail-card {
-  fill: rgba(255, 255, 255, 0.96);
-  stroke: #d8d0c4;
+.central-display-case {
+  fill: #4d4a46;
+  stroke: #2e2b28;
+  stroke-width: 2.5;
+}
+
+.central-display-screen {
+  fill: #fbfaf7;
+  stroke: #d7d1c8;
   stroke-width: 2;
-  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.16));
 }
+
+.central-display-stand {
+  fill: #5d5954;
+  stroke: #35322f;
+  stroke-width: 2;
+}
+
+.central-display-base {
+  fill: #45413d;
+  stroke: #2e2b28;
+  stroke-width: 2;
+}
+
+#monitorDefault[hidden],
+#monitorPersonDetails[hidden] {
+  display: none;
+}
+
+/* Leere Monitoransicht */
+
+.monitor-default,
+.monitor-person-details {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: central-display-content-in 200ms ease-out;
+}
+
+.monitor-default-eyebrow {
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  fill: #81796f;
+}
+
+.monitor-default-title {
+  font-size: 23px;
+  font-weight: 850;
+  fill: #24211e;
+}
+
+.monitor-default-description {
+  font-size: 14px;
+  font-weight: 650;
+  fill: #625d56;
+}
+
+.monitor-default-hint {
+  font-size: 13px;
+  font-weight: 750;
+  fill: #8a691e;
+}
+
+/* Personendetails im Display */
+
+.monitor-faction-accent {
+  fill: #777777;
+}
+
+.monitor-detail-faction {
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: #6c6861;
+}
+
+.monitor-detail-name {
+  font-size: 22px;
+  font-weight: 850;
+  fill: #24211e;
+}
+
+.monitor-detail-office {
+  font-size: 14px;
+  font-weight: 750;
+  fill: #403b35;
+}
+
+.monitor-detail-roles {
+  font-size: 13px;
+  fill: #6c6861;
+}
+
+.monitor-detail-hint {
+  font-size: 11px;
+  fill: #80796f;
+}
+
+@keyframes central-display-content-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .monitor-default,
+  .monitor-person-details {
+    animation: none;
+  }
+}
+
 
 .monitor-faction-accent {
   fill: #777777;
@@ -490,6 +601,14 @@ code {
 
   #monitorDefault:not([hidden]) {
     display: inline;
+  }
+  .monitor-default-title {
+    font-size: 21px;
+  }
+
+  .monitor-default-description,
+  .monitor-default-hint {
+    font-size: 13px;
   }
 
   .page-shell {
