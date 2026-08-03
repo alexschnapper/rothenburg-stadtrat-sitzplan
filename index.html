@@ -9,6 +9,7 @@
   >
 
   <meta
+    id="pageDescription"
     name="description"
     content="Interaktiver Sitzplan des Stadtrats Rothenburg ob der Tauber"
   >
@@ -26,15 +27,19 @@
 <body>
   <main class="page-shell">
     <header class="intro">
-      <p class="eyebrow">
+      <p
+        class="eyebrow"
+        data-ui-text="page.eyebrow"
+      >
         Kommunalpolitik verständlich dargestellt
       </p>
-
-      <h1>
+      <h1 data-ui-text="page.title">
         Sitzordnung des Rothenburger Stadtrats
       </h1>
-
-      <p class="lead">
+      <p
+        class="lead"
+        data-ui-text="page.lead"
+      >
         Die Darstellung orientiert sich am tatsächlichen Sitzungssaal
         aus Sicht der Besuchertribüne. Einen Sitz anklicken oder mit der
         Tastatur auswählen, um Details anzuzeigen.
@@ -47,11 +52,14 @@
     >
       <div class="card-head">
         <div>
-          <h2 id="map-title">
+          <h2
+            id="map-title"
+            data-ui-text="seatmap.title"
+          >
             Großer Sitzungssaal
           </h2>
 
-          <p>
+          <p data-ui-text="seatmap.summary">
             24 gewählte Stadtratsmitglieder · schematische 2D-Draufsicht
           </p>
         </div>
@@ -60,6 +68,7 @@
           class="secondary-button"
           id="resetSelection"
           type="button"
+          data-ui-text="seatmap.resetButton"
         >
           Auswahl zurücksetzen
         </button>
@@ -73,11 +82,17 @@
             role="img"
             aria-labelledby="svg-title svg-desc"
           >
-            <title id="svg-title">
+            <title
+              id="svg-title"
+              data-ui-text="seatmap.svgTitle"
+            >
               Sitzordnung des Stadtrats Rothenburg ob der Tauber
             </title>
 
-            <desc id="svg-desc">
+            <desc
+              id="svg-desc"
+              data-ui-text="seatmap.svgDescription"
+            >
               U-förmige Sitzordnung mit 24 nach Fraktionen eingefärbten
               Sitzen, Stadtspitze, Verwaltung, Gästeplätzen und einer
               Informationsanzeige in der Mitte.
@@ -105,6 +120,7 @@
               y="34"
               text-anchor="middle"
               class="zone-label"
+              data-ui-text="seatmap.officialsLabel"
             >
               STADTSPITZE UND VERWALTUNG
             </text>
@@ -156,6 +172,7 @@
               id="officialsLayer"
               class="official-row"
               aria-label="Stadtspitze, Verwaltung und geladene Gäste"
+              data-ui-aria-label="seatmap.officialsAriaLabel"
             ></g>
 
             <!-- Gemeinsamer zentraler Informationsbildschirm -->
@@ -221,6 +238,7 @@
                 x="520"
                 y="290"
                 text-anchor="middle"
+                data-ui-text="display.eyebrow"
               >
                 INFORMATIONSSYSTEM
               </text>
@@ -230,6 +248,7 @@
                 x="520"
                 y="334"
                 text-anchor="middle"
+                data-ui-text="display.title"
               >
                 Rothenburg ob der Tauber
               </text>
@@ -239,6 +258,7 @@
                 x="520"
                 y="374"
                 text-anchor="middle"
+                data-ui-text="display.description"
               >
                 Informationen zur Sitzordnung
               </text>
@@ -249,6 +269,7 @@
                 x="520"
                 y="410"
                 text-anchor="middle"
+                data-ui-text="display.defaultHint"
               >
                 Bitte einen Sitz auswählen
               </text>
@@ -312,6 +333,7 @@
             <g
               id="seatsLayer"
               aria-label="Gewählte Mitglieder des Stadtrats"
+              data-ui-aria-label="seatmap.councilSeatsAriaLabel"
             ></g>
 
             <!--
@@ -328,6 +350,7 @@
                 x="520"
                 y="870"
                 text-anchor="middle"
+                data-ui-text="audience.label"
               >
                 BESUCHERTRIBÜNE · ZUHÖREN, KEIN REDERECHT WÄHREND DER SITZUNG
               </text>
@@ -347,11 +370,11 @@
               ↖
             </span>
 
-            <h3>
+            <h3 data-ui-text="details.emptyTitle">
               Sitz auswählen
             </h3>
 
-            <p>
+            <p data-ui-text="details.emptyText">
               Einen Sitz auswählen, um Informationen zur Person,
               Fraktion oder Funktion anzuzeigen.
             </p>
@@ -372,12 +395,12 @@
 
             <dl>
               <div>
-                <dt>Sitz</dt>
+                <dt data-ui-text="details.seatLabel">Sitz</dt>
                 <dd id="detailSeat"></dd>
               </div>
 
               <div>
-                <dt id="detailCategoryLabel">
+                <dt id="detailCategoryLabel" data-ui-text="details.factionLabel">
                   Fraktion
                 </dt>
 
@@ -388,7 +411,7 @@
                 id="detailCommitteesRow"
                 hidden
               >
-                <dt>Ausschüsse</dt>
+                <dt data-ui-text="details.committeesLabel">Ausschüsse</dt>
                 <dd id="detailCommittees"></dd>
               </div>
             </dl>
@@ -399,6 +422,7 @@
               href="#"
               target="_blank"
               rel="noopener"
+              data-ui-text="details.profileLink"
             >
               Zum Ratsinformationssystem
             </a>
@@ -410,14 +434,17 @@
         id="legend"
         class="legend"
         aria-label="Fraktionslegende"
+        data-ui-aria-label="legend.ariaLabel"
       ></div>
     </section>
 
     <section class="explanation">
       <article>
-        <h2>Stadtspitze</h2>
+        <h2 data-ui-text="explanation.leadershipTitle">
+          Stadtspitze
+        </h2>
 
-        <p>
+        <p data-ui-text="explanation.leadershipText">
           Der Oberbürgermeister sitzt mittig an der hinteren Reihe.
           Links davon ist der Platz des ersten Bürgermeisters,
           rechts der Platz der zweiten Bürgermeisterin.
@@ -425,9 +452,11 @@
       </article>
 
       <article>
-        <h2>Verwaltung und Gäste</h2>
+        <h2 data-ui-text="explanation.administrationTitle">
+          Verwaltung und Gäste
+        </h2>
 
-        <p>
+        <p data-ui-text="explanation.administrationText">
           Weitere Plätze in dieser Reihe sind für die Stadtverwaltung
           vorgesehen. Die beiden Plätze rechts aus Sicht der
           Besuchertribüne sind für eingeladene Referentinnen,
@@ -436,9 +465,11 @@
       </article>
 
       <article>
-        <h2>Informationsanzeige</h2>
+        <h2 data-ui-text="explanation.displayTitle">
+          Informationsanzeige
+        </h2>
 
-        <p>
+        <p data-ui-text="explanation.displayText">
           Über die Monitore in der Saalmitte werden Informationen zu
           Tagesordnungspunkten gezeigt. In der interaktiven Darstellung
           erscheint dort zusätzlich die ausgewählte Person.

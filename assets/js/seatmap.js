@@ -1,3 +1,4 @@
+let uiTexts = null;
 async function loadJson(path) {
   const response = await fetch(path);
 
@@ -6,6 +7,77 @@ async function loadJson(path) {
   }
 
   return response.json();
+}
+
+function valueAtPath(source, path) {
+  return path
+    .split(".")
+    .reduce(
+      (current, segment) => current?.[segment],
+      source
+    );
+}
+
+function uiText(path, fallback = "") {
+  const value = valueAtPath(uiTexts, path);
+
+  return typeof value === "string" && value.trim()
+    ? value
+    : fallback;
+}
+
+function applyUiTexts(texts) {
+  document.title = uiText(
+    "page.documentTitle",
+    document.title
+  );
+
+  const description =
+    document.getElementById("pageDescription");
+
+  if (description) {
+    description.content = uiText(
+      "page.description",
+      description.content
+    );
+  }
+
+  document
+    .querySelectorAll("[data-ui-text]")
+    .forEach((element) => {
+      const path =
+        element.dataset.uiText;
+
+      const value =
+        valueAtPath(texts, path);
+
+      if (
+        typeof value === "string" &&
+        value.trim()
+      ) {
+        element.textContent = value;
+      }
+    });
+
+  document
+    .querySelectorAll("[data-ui-aria-label]")
+    .forEach((element) => {
+      const path =
+        element.dataset.uiAriaLabel;
+
+      const value =
+        valueAtPath(texts, path);
+
+      if (
+        typeof value === "string" &&
+        value.trim()
+      ) {
+        element.setAttribute(
+          "aria-label",
+          value
+        );
+      }
+    });
 }
 
 function svgEl(name, attrs = {}) {
@@ -63,7 +135,12 @@ function buildCouncilDisplayData(assignment, person) {
   return {
     id: assignment.id,
     seat: assignment.seat,
-    name: person?.name || "Nicht besetzt",
+    name:
+      person?.name ||
+      uiText(
+        "details.unassignedName",
+        "Nicht besetzt"
+      ),
     office: assignment.office || "",
     roles: Array.isArray(assignment.roles)
       ? assignment.roles
@@ -90,7 +167,13 @@ function buildOfficialDisplayData(official, person) {
  */
 
 function renderLegend(factions) {
-  const legend = document.getElementById("legend");
+  const legend =
+    document.getElementById("legend");
+
+  const seatsLabel = uiText(
+    "legend.seatsLabel",
+    "Sitze"
+  );
 
   legend.innerHTML = factions
     .map(
@@ -102,7 +185,7 @@ function renderLegend(factions) {
           ></span>
 
           <strong>${faction.shortName}</strong>
-          ${faction.seats} Sitze
+          ${faction.seats} ${seatsLabel}
         </span>
       `
     )
@@ -194,14 +277,28 @@ function clearSelectedElements() {
 
 function officialCategory(type) {
   const labels = {
-    administration: "Stadtverwaltung",
-    mayor: "Stadtspitze",
-    "lord-mayor": "Stadtspitze",
-    guest: "Geladene Gäste"
+    administration: uiText(
+      "categories.administration",
+      "Stadtverwaltung"
+    ),
+    mayor: uiText(
+      "categories.leadership",
+      "Stadtspitze"
+    ),
+    "lord-mayor": uiText(
+      "categories.leadership",
+      "Stadtspitze"
+    ),
+    guest: uiText(
+      "categories.invitedGuests",
+      "Geladene Gäste"
+    )
   };
 
-  return labels[type] ||
-    "Stadtspitze und Verwaltung";
+  return labels[type] || uiText(
+    "categories.officialsFallback",
+    "Stadtspitze und Verwaltung"
+  );
 }
 
 function officialColor(type) {
@@ -232,7 +329,10 @@ function buildOfficialAriaLabel(official) {
     parts.push(official.office);
   }
 
-  parts.push(`Platz ${official.seat}`);
+  parts.push(
+    `${uiText("details.placeLabel", "Platz")} ` +
+    `${official.seat}`
+  );
 
   return parts.join(", ");
 }
@@ -668,7 +768,10 @@ function showPerson(
     name: person.name,
     detailText: detailParts.join(" · "),
     seat: person.seat,
-    categoryLabel: "Fraktion",
+    categoryLabel: uiText(
+      "details.factionLabel",
+      "Fraktion"
+    ),
     categoryValue: faction.name,
     committees: person.committees,
     profileUrl: person.profileUrl
@@ -716,7 +819,10 @@ function showOfficial(
     detailText:
       detailParts.join(" · "),
     seat: official.seat,
-    categoryLabel: "Bereich",
+    categoryLabel: uiText(
+      "details.areaLabel",
+      "Bereich"
+    ),
     categoryValue:
       officialCategory(official.type),
     committees: [],
@@ -795,8 +901,14 @@ function updateMobileMonitorHint(
   }
 
   hint.textContent = hasSelection
-    ? "Details unterhalb des Sitzplans"
-    : "Bitte einen Sitz auswählen";
+    ? uiText(
+        "display.mobileSelectionHint",
+        "Details unterhalb des Sitzplans"
+      )
+    : uiText(
+        "display.defaultHint",
+        "Bitte einen Sitz auswählen"
+      );
 }
 
 /*
@@ -958,14 +1070,19 @@ async function init() {
       people,
       councilSeats,
       officials,
-      room
+      room,
+      loadedUiTexts
     ] = await Promise.all([
       loadJson("data/factions.json"),
       loadJson("data/people.json"),
       loadJson("data/council-seats.json"),
       loadJson("data/officials.json"),
-      loadJson("data/room.json")
+      loadJson("data/room.json"),
+      loadJson("data/ui-texts.json")
     ]);
+
+    uiTexts = loadedUiTexts;
+    applyUiTexts(uiTexts);
 
     renderLegend(factions);
 
@@ -1001,13 +1118,23 @@ async function init() {
   } catch (error) {
     console.error(error);
 
+    const title = uiText(
+      "errors.dataLoadTitle",
+      "Hinweis:"
+    );
+
+    const text = uiText(
+      "errors.dataLoadText",
+      "Die Daten konnten nicht geladen werden."
+    );
+
     document
       .querySelector(".map-wrap")
       .insertAdjacentHTML(
         "afterbegin",
         `<p role="alert">
-          <strong>Hinweis:</strong>
-          Die JSON-Daten konnten nicht geladen werden.
+          <strong>${title}</strong>
+          ${text}
         </p>`
       );
   }

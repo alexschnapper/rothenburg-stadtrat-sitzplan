@@ -17,6 +17,7 @@ beschlossene Zielstrukturen zukünftiger Versionen.
 | `council-seats.json` | Zuordnung Person ↔ Sitz ↔ Fraktion |
 | `officials.json` | Stadtspitze, Verwaltung und Gäste |
 | `room.json` | Räumliche Anordnung des Sitzungssaals |
+| `ui-texts.json` | Zentrale redaktionelle Texte und Beschriftungen der Benutzeroberfläche |
 
 ## Beziehungen der Datenquellen
 
@@ -338,6 +339,40 @@ Die Anwendung lädt `room.json` beim Start und verwendet `seatPositions` für di
 > Diese Felder dienen derzeit der Darstellung.
 > Im Rahmen der Raumkonfiguration (room.json) werden sie künftig
 > aus officials.json ausgelagert.
+
+## ui-texts.json
+
+`ui-texts.json` enthält zentrale redaktionelle Texte und
+Beschriftungen der Benutzeroberfläche.
+
+Die Datei ist nach Oberflächenbereichen gegliedert:
+
+- `page` für Seitentitel und Einführung
+- `seatmap` für den Sitzplan und seine Bedienung
+- `display` für den zentralen Informationsbildschirm
+- `details` für den Informationsbereich
+- `categories` für Bezeichnungen der Official-Typen
+- `errors` für verständliche Fehlermeldungen
+
+Beispiel:
+
+```json
+{
+  "display": {
+    "defaultHint": "Bitte einen Sitz auswählen",
+    "mobileSelectionHint": "Details unterhalb des Sitzplans"
+  }
+}
+```
+
+Die Datei enthält ausschließlich Texte. Raumpositionen, Farben,
+Personendaten und Sitzzuordnungen gehören weiterhin in ihre jeweiligen
+Datenquellen.
+
+Die zentrale Verwaltung bereitet eine spätere Wiederverwendung für
+andere kommunale Gremien vor. Eine vollständige Mehrsprachigkeit oder
+ein Sprachumschalter sind derzeit nicht Bestandteil des Datenmodells.
+```
 
 ## Konventionen
 
