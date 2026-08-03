@@ -6,13 +6,14 @@
   "scripts": {
     "serve": "python3 -m http.server 8080",
     "validate:data": "node scripts/validate-persons.mjs",
+    "lint:html": "htmlhint index.html",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:ui": "playwright test --ui",    
+    "test:e2e:ui": "playwright test --ui",
     "test:report": "playwright show-report",
-    "test:all": "npm run validate:data && npm test && npm run test:e2e"
+    "test:all": "npm run lint:html && npm test && npm run test:e2e"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
   "homepage": "https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan#readme",
   "devDependencies": {
     "@playwright/test": "^1.62.1",
+    "htmlhint": "^1.9.2",
     "vitest": "^4.1.10"
   }
 }
