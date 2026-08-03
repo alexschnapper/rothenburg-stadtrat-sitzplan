@@ -6,7 +6,7 @@ const seatCoordinates = [
     (_, index) => ({
       id: `L${String(index + 1).padStart(2, "0")}`,
       x: 185,
-      y: 220 + index * 36
+      y: 190 + index * 48
     })
   ),
 
@@ -16,7 +16,7 @@ const seatCoordinates = [
     { length: 5 },
     (_, index) => ({
       id: `U${String(index + 1).padStart(2, "0")}`,
-      x: 330 + index * 95,
+      x: 295 + index * 112,
       y: 600
     })
   ),
@@ -28,7 +28,7 @@ const seatCoordinates = [
     (_, index) => ({
       id: `R${String(index + 1).padStart(2, "0")}`,
       x: 855,
-      y: 575 - index * 42
+      y: 595 - index * 48
     })
   )
 ];
@@ -659,12 +659,12 @@ function renderCouncilSeats(
 
     const hitArea = svgEl("circle", {
       class: "seat-hit-area",
-      r: "30",
+      r: "32",
       fill: "transparent"
     });
 
     const visibleCircle = svgEl("circle", {
-      r: "18",
+      r: "21",
       fill: faction.color
     });
 
