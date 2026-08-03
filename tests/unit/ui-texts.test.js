@@ -80,12 +80,8 @@ describe("UI-Texte", () => {
 
       "audience.label",
 
-      "explanation.leadershipTitle",
-      "explanation.leadershipText",
-      "explanation.administrationTitle",
-      "explanation.administrationText",
-      "explanation.displayTitle",
-      "explanation.displayText",
+      "explanation.overviewTitle",
+      "explanation.overviewText",
 
       "errors.dataLoadTitle",
       "errors.dataLoadText",

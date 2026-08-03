@@ -47,20 +47,16 @@
   },
   "audience": {
     "label": "BESUCHERTRIBÜNE · ZUHÖREN, KEIN REDERECHT WÄHREND DER SITZUNG"
-  },
-  "explanation": {
-    "leadershipTitle": "Stadtspitze",
-    "leadershipText": "Der Oberbürgermeister sitzt mittig an der hinteren Reihe. Links davon ist der Platz des ersten Bürgermeisters, rechts der Platz der zweiten Bürgermeisterin.",
-    "administrationTitle": "Verwaltung und Gäste",
-    "administrationText": "Weitere Plätze in dieser Reihe sind für die Stadtverwaltung vorgesehen. Die beiden Plätze rechts aus Sicht der Besuchertribüne sind für eingeladene Referentinnen, Referenten oder Gäste.",
-    "displayTitle": "Informationsanzeige",
-    "displayText": "Über die Monitore in der Saalmitte werden Informationen zu Tagesordnungspunkten gezeigt. In der interaktiven Darstellung erscheint dort zusätzlich die ausgewählte Person."
-  },
-  "errors": {
-    "dataLoadTitle": "Hinweis:",
-    "dataLoadText": "Die Daten konnten nicht geladen werden. Starte die Seite über einen lokalen Webserver oder GitHub Pages.",
-    "missingOfficialsLayer": "Das SVG-Element #officialsLayer wurde nicht gefunden.",
-    "missingSeatsLayer": "Das SVG-Element #seatsLayer wurde nicht gefunden.",
-    "invalidSeatPositions": "room.seatPositions muss ein Array sein."
-  }
+    },
+    "explanation": {
+      "overviewTitle": "Hinweise zum Sitzungssaal",
+      "overviewText": "Stadtspitze, Verwaltung und geladene Gäste sitzen an der oberen Tischseite. Der zentrale Bildschirm zeigt Informationen zur Sitzordnung und zur ausgewählten Person."
+    },
+    "errors": {
+      "dataLoadTitle": "Hinweis:",
+      "dataLoadText": "Die Daten konnten nicht geladen werden. Starte die Seite über einen lokalen Webserver oder GitHub Pages.",
+      "missingOfficialsLayer": "Das SVG-Element #officialsLayer wurde nicht gefunden.",
+      "missingSeatsLayer": "Das SVG-Element #seatsLayer wurde nicht gefunden.",
+      "invalidSeatPositions": "room.seatPositions muss ein Array sein."
+    }
 }
