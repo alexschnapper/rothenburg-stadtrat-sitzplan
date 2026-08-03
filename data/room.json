@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "id": "rothenburg-grosser-sitzungssaal",
+    "name": "Großer Sitzungssaal",
+    "version": 1
+  },
+  "viewBox": {
+    "width": 1040,
+    "height": 760
+  },
+  "seatRows": {
+    "left": {
+      "count": 10
+    },
+    "bottom": {
+      "count": 5
+    },
+    "right": {
+      "count": 9
+    }
+  },
+  "notes": [
+    "Erste Version des Raummodells.",
+    "Koordinaten werden in einem späteren Schritt ergänzt."
+  ]
+}
