@@ -63,6 +63,85 @@ describe("Raumkonfiguration", () => {
       ).toBeGreaterThan(0);
     }
   });
+  test("sichtbare Sitzmarkierungen überlappen sich nicht", () => {
+    const visibleSeatRadius = 21;
+    const minimumDistance = visibleSeatRadius * 2;
+    const conflicts = [];
+
+    for (
+      let firstIndex = 0;
+      firstIndex < room.seatPositions.length;
+      firstIndex += 1
+    ) {
+      const first = room.seatPositions[firstIndex];
+
+      for (
+        let secondIndex = firstIndex + 1;
+        secondIndex < room.seatPositions.length;
+        secondIndex += 1
+      ) {
+        const second = room.seatPositions[secondIndex];
+
+        const distance = Math.hypot(
+          second.x - first.x,
+          second.y - first.y
+        );
+
+        if (distance < minimumDistance) {
+          conflicts.push(
+            `${first.seat} ↔ ${second.seat}: ` +
+            `${distance.toFixed(1)}`
+          );
+        }
+      }
+    }
+
+    expect(
+      conflicts,
+      `Überlappende Sitzmarkierungen:\n${conflicts.join("\n")}`
+    ).toEqual([]);
+  });
+
+  test("untere Eckbereiche bleiben frei", () => {
+    const positionBySeat = new Map(
+      room.seatPositions.map((position) => [
+        position.seat,
+        position
+      ])
+    );
+
+    const leftBottom = positionBySeat.get("L10");
+    const bottomLeft = positionBySeat.get("U01");
+    const bottomRight = positionBySeat.get("U05");
+    const rightBottom = positionBySeat.get("R01");
+
+    expect(leftBottom).toBeDefined();
+    expect(bottomLeft).toBeDefined();
+    expect(bottomRight).toBeDefined();
+    expect(rightBottom).toBeDefined();
+
+    const leftCornerDistance = Math.hypot(
+      bottomLeft.x - leftBottom.x,
+      bottomLeft.y - leftBottom.y
+    );
+
+    const rightCornerDistance = Math.hypot(
+      rightBottom.x - bottomRight.x,
+      rightBottom.y - bottomRight.y
+    );
+
+    const minimumCornerDistance = 100;
+
+    expect(
+      leftCornerDistance,
+      `Linker Eckbereich ist mit ${leftCornerDistance.toFixed(1)} zu eng`
+    ).toBeGreaterThanOrEqual(minimumCornerDistance);
+
+    expect(
+      rightCornerDistance,
+      `Rechter Eckbereich ist mit ${rightCornerDistance.toFixed(1)} zu eng`
+    ).toBeGreaterThanOrEqual(minimumCornerDistance);
+  });
 });
 
 test("enthält genau 24 Sitzpositionen", () => {
