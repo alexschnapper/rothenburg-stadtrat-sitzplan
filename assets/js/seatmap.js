@@ -1,38 +1,3 @@
-const seatCoordinates = [
-  // Linke Tischseite, von oben nach unten:
-  // 7 CSU, anschließend 3 UR.
-  ...Array.from(
-    { length: 10 },
-    (_, index) => ({
-      id: `L${String(index + 1).padStart(2, "0")}`,
-      x: 185,
-      y: 190 + index * 48
-    })
-  ),
-
-  // Untere Reihe, von links nach rechts:
-  // 5 FRV.
-  ...Array.from(
-    { length: 5 },
-    (_, index) => ({
-      id: `U${String(index + 1).padStart(2, "0")}`,
-      x: 295 + index * 112,
-      y: 600
-    })
-  ),
-
-  // Rechte Tischseite, von unten nach oben:
-  // 3 Grüne, anschließend 6 SPD.
-  ...Array.from(
-    { length: 9 },
-    (_, index) => ({
-      id: `R${String(index + 1).padStart(2, "0")}`,
-      x: 855,
-      y: 595 - index * 48
-    })
-  )
-];
-
 async function loadJson(path) {
   const response = await fetch(path);
 
@@ -56,9 +21,73 @@ function svgEl(name, attrs = {}) {
   return element;
 }
 
+/*
+ * Daten-Lookups
+ */
+
 function factionFor(id, factions) {
-  return factions.find((faction) => faction.id === id);
+  return (
+    factions.find((faction) => faction.id === id) ??
+    null
+  );
 }
+
+function personFor(personId, people) {
+  if (!personId) {
+    return null;
+  }
+
+  return (
+    people.find((person) => person.id === personId) ??
+    null
+  );
+}
+
+function councilSeatFor(seatId, councilSeats) {
+  return (
+    councilSeats.find(
+      (assignment) => assignment.seat === seatId
+    ) ?? null
+  );
+}
+
+/*
+ * Anzeigeobjekte
+ *
+ * people.json enthält die Stammdaten.
+ * council-seats.json und officials.json enthalten die jeweilige
+ * Zuordnung beziehungsweise Funktion.
+ */
+
+function buildCouncilDisplayData(assignment, person) {
+  return {
+    id: assignment.id,
+    seat: assignment.seat,
+    name: person?.name || "Nicht besetzt",
+    office: assignment.office || "",
+    roles: Array.isArray(assignment.roles)
+      ? assignment.roles
+      : [],
+    committees: Array.isArray(assignment.committees)
+      ? assignment.committees
+      : [],
+    profileUrl: person?.profileUrl || "",
+    photo: person?.photo || ""
+  };
+}
+
+function buildOfficialDisplayData(official, person) {
+  return {
+    ...official,
+    name: person?.name || "",
+    profileUrl: person?.profileUrl || "",
+    photo: person?.photo || ""
+  };
+}
+
+/*
+ * Legende
+ */
 
 function renderLegend(factions) {
   const legend = document.getElementById("legend");
@@ -79,6 +108,10 @@ function renderLegend(factions) {
     )
     .join("");
 }
+
+/*
+ * Text-Hilfsfunktionen
+ */
 
 function truncateText(value, maxLength = 32) {
   if (!value) {
@@ -143,6 +176,10 @@ function setSvgTextLines(
   });
 }
 
+/*
+ * Allgemeine Auswahl
+ */
+
 function clearSelectedElements() {
   document
     .querySelectorAll(".seat, .official")
@@ -150,6 +187,10 @@ function clearSelectedElements() {
       element.setAttribute("aria-pressed", "false");
     });
 }
+
+/*
+ * Officials
+ */
 
 function officialCategory(type) {
   const labels = {
@@ -159,7 +200,8 @@ function officialCategory(type) {
     guest: "Geladene Gäste"
   };
 
-  return labels[type] || "Stadtspitze und Verwaltung";
+  return labels[type] ||
+    "Stadtspitze und Verwaltung";
 }
 
 function officialColor(type) {
@@ -195,8 +237,10 @@ function buildOfficialAriaLabel(official) {
   return parts.join(", ");
 }
 
-function renderOfficials(officials) {
-  const layer = document.getElementById("officialsLayer");
+function renderOfficials(officials, people) {
+  const layer = document.getElementById(
+    "officialsLayer"
+  );
 
   if (!layer) {
     throw new Error(
@@ -207,37 +251,53 @@ function renderOfficials(officials) {
   layer.replaceChildren();
 
   officials.forEach((official) => {
+    const person = personFor(
+      official.personId,
+      people
+    );
+
+    const displayOfficial =
+      buildOfficialDisplayData(
+        official,
+        person
+      );
+
     const group = svgEl("g", {
-      class: `official ${official.type}`,
-      transform: `translate(${official.x} ${official.y})`,
+      class: `official ${displayOfficial.type}`,
+      transform:
+        `translate(${displayOfficial.x} ${displayOfficial.y})`,
       tabindex: "0",
       role: "button",
-      "aria-label": buildOfficialAriaLabel(official),
+      "aria-label":
+        buildOfficialAriaLabel(displayOfficial),
       "aria-pressed": "false"
     });
 
     const hitArea = svgEl("circle", {
       class: "official-hit-area",
-      r: String(Math.max(official.radius + 8, 30)),
+      r: String(
+        Math.max(displayOfficial.radius + 8, 30)
+      ),
       fill: "transparent"
     });
 
     const visibleCircle = svgEl("circle", {
       class: "official-marker",
-      r: String(official.radius)
+      r: String(displayOfficial.radius)
     });
 
     const text = svgEl("text", {
       y: "4"
     });
 
-    text.textContent = official.shortLabel;
+    text.textContent =
+      displayOfficial.shortLabel;
 
     const title = svgEl("title");
 
-    title.textContent = official.name
-      ? `${official.name} – ${official.office}`
-      : official.office;
+    title.textContent = displayOfficial.name
+      ? `${displayOfficial.name} – ${displayOfficial.office}`
+      : displayOfficial.office;
 
     group.append(
       hitArea,
@@ -247,25 +307,40 @@ function renderOfficials(officials) {
     );
 
     group.addEventListener("click", () => {
-      showOfficial(official, group);
+      showOfficial(
+        displayOfficial,
+        group
+      );
     });
 
-    group.addEventListener("keydown", (event) => {
-      if (
-        event.key === "Enter" ||
-        event.key === " "
-      ) {
-        event.preventDefault();
-        showOfficial(official, group);
+    group.addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+          event.preventDefault();
+
+          showOfficial(
+            displayOfficial,
+            group
+          );
+        }
       }
-    });
+    );
 
     layer.appendChild(group);
   });
 }
 
+/*
+ * Detailbereich
+ */
+
 function setDetailLink(profileUrl) {
-  const detailLink = document.getElementById("detailLink");
+  const detailLink =
+    document.getElementById("detailLink");
 
   if (profileUrl) {
     detailLink.href = profileUrl;
@@ -279,10 +354,14 @@ function setDetailLink(profileUrl) {
 
 function setCommittees(committees) {
   const committeesRow =
-    document.getElementById("detailCommitteesRow");
+    document.getElementById(
+      "detailCommitteesRow"
+    );
 
   const committeesValue =
-    document.getElementById("detailCommittees");
+    document.getElementById(
+      "detailCommittees"
+    );
 
   if (
     Array.isArray(committees) &&
@@ -311,65 +390,97 @@ function showDetailsPanel({
   committees = [],
   profileUrl = ""
 }) {
-  document.getElementById("emptyState").hidden = true;
-  document.getElementById("personDetails").hidden = false;
+  document.getElementById(
+    "emptyState"
+  ).hidden = true;
+
+  document.getElementById(
+    "personDetails"
+  ).hidden = false;
 
   const badge =
-    document.getElementById("detailFactionBadge");
+    document.getElementById(
+      "detailFactionBadge"
+    );
 
   badge.textContent = badgeText;
   badge.style.background = badgeColor;
   badge.style.color = badgeTextColor;
 
-  document.getElementById("detailName").textContent =
-    name;
+  document.getElementById(
+    "detailName"
+  ).textContent = name;
 
-  document.getElementById("detailRole").textContent =
-    detailText;
+  document.getElementById(
+    "detailRole"
+  ).textContent = detailText;
 
-  document.getElementById("detailSeat").textContent =
-    seat;
+  document.getElementById(
+    "detailSeat"
+  ).textContent = seat;
 
-  document
-    .getElementById("detailCategoryLabel")
-    .textContent = categoryLabel;
+  document.getElementById(
+    "detailCategoryLabel"
+  ).textContent = categoryLabel;
 
-  document.getElementById("detailFaction").textContent =
-    categoryValue;
+  document.getElementById(
+    "detailFaction"
+  ).textContent = categoryValue;
 
   setCommittees(committees);
   setDetailLink(profileUrl);
 }
 
+/*
+ * Zentraler Informationsbildschirm
+ */
+
 function showPersonInMonitor(person, faction) {
   if (
-    window.matchMedia("(max-width: 600px)").matches
+    window.matchMedia(
+      "(max-width: 600px)"
+    ).matches
   ) {
     return;
   }
 
   const monitorDefault =
-    document.getElementById("monitorDefault");
+    document.getElementById(
+      "monitorDefault"
+    );
 
   const monitorDetails =
-    document.getElementById("monitorPersonDetails");
+    document.getElementById(
+      "monitorPersonDetails"
+    );
 
   const factionLabel =
-    document.getElementById("monitorFaction");
+    document.getElementById(
+      "monitorFaction"
+    );
 
   const personName =
-    document.getElementById("monitorPersonName");
+    document.getElementById(
+      "monitorPersonName"
+    );
 
   const personOffice =
-    document.getElementById("monitorPersonOffice");
+    document.getElementById(
+      "monitorPersonOffice"
+    );
 
   const personRoles =
-    document.getElementById("monitorPersonRoles");
+    document.getElementById(
+      "monitorPersonRoles"
+    );
 
   const factionAccent =
-    document.getElementById("monitorFactionAccent");
+    document.getElementById(
+      "monitorFactionAccent"
+    );
 
-  factionLabel.textContent = faction.shortName;
+  factionLabel.textContent =
+    faction.shortName;
 
   setSvgTextLines(
     personName,
@@ -382,9 +493,10 @@ function showPersonInMonitor(person, faction) {
   personOffice.textContent =
     truncateText(person.office, 38);
 
-  const roleText = Array.isArray(person.roles)
-    ? person.roles.join(" · ")
-    : "";
+  const roleText =
+    Array.isArray(person.roles)
+      ? person.roles.join(" · ")
+      : "";
 
   personRoles.textContent =
     truncateText(roleText, 46);
@@ -395,15 +507,23 @@ function showPersonInMonitor(person, faction) {
   personRoles.style.display =
     roleText ? "inline" : "none";
 
-  factionAccent.style.fill = faction.color;
+  factionAccent.style.fill =
+    faction.color;
 
-  monitorDefault.setAttribute("hidden", "");
+  monitorDefault.setAttribute(
+    "hidden",
+    ""
+  );
+
   monitorDefault.setAttribute(
     "aria-hidden",
     "true"
   );
 
-  monitorDetails.removeAttribute("hidden");
+  monitorDetails.removeAttribute(
+    "hidden"
+  );
+
   monitorDetails.setAttribute(
     "aria-hidden",
     "false"
@@ -412,31 +532,47 @@ function showPersonInMonitor(person, faction) {
 
 function showOfficialInMonitor(official) {
   if (
-    window.matchMedia("(max-width: 600px)").matches
+    window.matchMedia(
+      "(max-width: 600px)"
+    ).matches
   ) {
     return;
   }
 
   const monitorDefault =
-    document.getElementById("monitorDefault");
+    document.getElementById(
+      "monitorDefault"
+    );
 
   const monitorDetails =
-    document.getElementById("monitorPersonDetails");
+    document.getElementById(
+      "monitorPersonDetails"
+    );
 
   const categoryLabel =
-    document.getElementById("monitorFaction");
+    document.getElementById(
+      "monitorFaction"
+    );
 
   const personName =
-    document.getElementById("monitorPersonName");
+    document.getElementById(
+      "monitorPersonName"
+    );
 
   const personOffice =
-    document.getElementById("monitorPersonOffice");
+    document.getElementById(
+      "monitorPersonOffice"
+    );
 
   const personRoles =
-    document.getElementById("monitorPersonRoles");
+    document.getElementById(
+      "monitorPersonRoles"
+    );
 
   const factionAccent =
-    document.getElementById("monitorFactionAccent");
+    document.getElementById(
+      "monitorFactionAccent"
+    );
 
   categoryLabel.textContent =
     officialCategory(official.type);
@@ -444,7 +580,7 @@ function showOfficialInMonitor(official) {
   setSvgTextLines(
     personName,
     splitText(
-      person?.name || official.office,
+      official.name || official.office,
       27
     ),
     392,
@@ -454,15 +590,16 @@ function showOfficialInMonitor(official) {
 
   personOffice.textContent =
     official.name
-      ? truncateText(official.office, 32)
+      ? truncateText(official.office, 38)
       : "";
 
-  const roleText = Array.isArray(official.roles)
-    ? official.roles.join(" · ")
-    : "";
+  const roleText =
+    Array.isArray(official.roles)
+      ? official.roles.join(" · ")
+      : "";
 
   personRoles.textContent =
-    truncateText(roleText, 38);
+    truncateText(roleText, 46);
 
   personOffice.style.display =
     official.name && official.office
@@ -475,20 +612,35 @@ function showOfficialInMonitor(official) {
   factionAccent.style.fill =
     officialColor(official.type);
 
-  monitorDefault.setAttribute("hidden", "");
+  monitorDefault.setAttribute(
+    "hidden",
+    ""
+  );
+
   monitorDefault.setAttribute(
     "aria-hidden",
     "true"
   );
 
-  monitorDetails.removeAttribute("hidden");
+  monitorDetails.removeAttribute(
+    "hidden"
+  );
+
   monitorDetails.setAttribute(
     "aria-hidden",
     "false"
   );
 }
 
-function showPerson(person, faction, seatNode) {
+/*
+ * Auswahl von Ratsmitgliedern und Officials
+ */
+
+function showPerson(
+  person,
+  faction,
+  seatNode
+) {
   clearSelectedElements();
 
   seatNode.setAttribute(
@@ -526,7 +678,10 @@ function showPerson(person, faction, seatNode) {
   updateMobileMonitorHint(true);
 }
 
-function showOfficial(official, officialNode) {
+function showOfficial(
+  official,
+  officialNode
+) {
   clearSelectedElements();
 
   officialNode.setAttribute(
@@ -552,11 +707,14 @@ function showOfficial(official, officialNode) {
 
   showDetailsPanel({
     badgeText: official.shortLabel,
-    badgeColor: officialColor(official.type),
+    badgeColor:
+      officialColor(official.type),
     badgeTextColor:
       officialTextColor(official.type),
-    name: official.name || official.office,
-    detailText: detailParts.join(" · "),
+    name:
+      official.name || official.office,
+    detailText:
+      detailParts.join(" · "),
     seat: official.seat,
     categoryLabel: "Bereich",
     categoryValue:
@@ -569,41 +727,68 @@ function showOfficial(official, officialNode) {
   updateMobileMonitorHint(true);
 }
 
+/*
+ * Reset und mobile Hinweise
+ */
+
 function resetSelection() {
   clearSelectedElements();
 
-  document.getElementById("emptyState").hidden =
-    false;
+  document.getElementById(
+    "emptyState"
+  ).hidden = false;
 
-  document.getElementById("personDetails").hidden =
-    true;
+  document.getElementById(
+    "personDetails"
+  ).hidden = true;
 
   const monitorDefault =
-    document.getElementById("monitorDefault");
+    document.getElementById(
+      "monitorDefault"
+    );
 
   const monitorDetails =
-    document.getElementById("monitorPersonDetails");
+    document.getElementById(
+      "monitorPersonDetails"
+    );
 
-  monitorDefault.removeAttribute("hidden");
+  monitorDefault.removeAttribute(
+    "hidden"
+  );
+
   monitorDefault.setAttribute(
     "aria-hidden",
     "false"
   );
 
-  monitorDetails.setAttribute("hidden", "");
+  monitorDetails.setAttribute(
+    "hidden",
+    ""
+  );
+
   monitorDetails.setAttribute(
     "aria-hidden",
     "true"
   );
+
   updateMobileMonitorHint(false);
 }
 
-function updateMobileMonitorHint(hasSelection) {
-  if (!window.matchMedia("(max-width: 600px)").matches) {
+function updateMobileMonitorHint(
+  hasSelection
+) {
+  if (
+    !window.matchMedia(
+      "(max-width: 600px)"
+    ).matches
+  ) {
     return;
   }
 
-  const hint = document.getElementById("monitorDefaultHint");
+  const hint =
+    document.getElementById(
+      "monitorDefaultHint"
+    );
 
   if (!hint) {
     return;
@@ -614,37 +799,75 @@ function updateMobileMonitorHint(hasSelection) {
     : "Bitte einen Sitz auswählen";
 }
 
+/*
+ * Stadtratssitze
+ */
+
 function renderCouncilSeats(
-  persons,
-  factions
+  people,
+  councilSeats,
+  factions,
+  seatPositions
 ) {
   const layer =
-    document.getElementById("seatsLayer");
+    document.getElementById(
+      "seatsLayer"
+    );
+
+  if (!layer) {
+    throw new Error(
+      "Das SVG-Element #seatsLayer wurde nicht gefunden."
+    );
+  }
+
+  if (!Array.isArray(seatPositions)) {
+    throw new Error(
+      "room.seatPositions muss ein Array sein."
+    );
+  }
 
   layer.replaceChildren();
 
-  seatCoordinates.forEach((position) => {
-    const person = persons.find(
-      (candidate) =>
-        candidate.seat === position.id
-    );
+  seatPositions.forEach((position) => {
+    const assignment =
+      councilSeatFor(
+        position.seat,
+        councilSeats
+      );
 
-    if (!person) {
-      return;
-    }
-
-    const faction = factionFor(
-      person.faction,
-      factions
-    );
-
-    if (!faction) {
+    if (!assignment) {
       console.warn(
-        `Unbekannte Fraktion für ${person.id}: ${person.faction}`
+        `Keine Sitzzuordnung für ${position.seat} gefunden.`
       );
 
       return;
     }
+
+    const person =
+      personFor(
+        assignment.personId,
+        people
+      );
+
+    const faction =
+      factionFor(
+        assignment.factionId,
+        factions
+      );
+
+    if (!faction) {
+      console.warn(
+        `Keine Fraktion für Sitz ${position.seat} gefunden.`
+      );
+
+      return;
+    }
+
+    const displayData =
+      buildCouncilDisplayData(
+        assignment,
+        person
+      );
 
     const group = svgEl("g", {
       class: "seat",
@@ -653,7 +876,7 @@ function renderCouncilSeats(
       tabindex: "0",
       role: "button",
       "aria-label":
-        `${person.name}, ${faction.name}, Sitz ${person.seat}`,
+        `${displayData.name}, ${faction.name}, Sitz ${displayData.seat}`,
       "aria-pressed": "false"
     });
 
@@ -663,10 +886,11 @@ function renderCouncilSeats(
       fill: "transparent"
     });
 
-    const visibleCircle = svgEl("circle", {
-      r: "21",
-      fill: faction.color
-    });
+    const visibleCircle =
+      svgEl("circle", {
+        r: "21",
+        fill: faction.color
+      });
 
     const text = svgEl("text", {
       fill: faction.textColor,
@@ -681,7 +905,7 @@ function renderCouncilSeats(
     const title = svgEl("title");
 
     title.textContent =
-      `${person.name} – ${faction.shortName}`;
+      `${displayData.name} – ${faction.shortName}`;
 
     group.append(
       hitArea,
@@ -690,13 +914,16 @@ function renderCouncilSeats(
       title
     );
 
-    group.addEventListener("click", () => {
-      showPerson(
-        person,
-        faction,
-        group
-      );
-    });
+    group.addEventListener(
+      "click",
+      () => {
+        showPerson(
+          displayData,
+          faction,
+          group
+        );
+      }
+    );
 
     group.addEventListener(
       "keydown",
@@ -708,7 +935,7 @@ function renderCouncilSeats(
           event.preventDefault();
 
           showPerson(
-            person,
+            displayData,
             faction,
             group
           );
@@ -720,24 +947,44 @@ function renderCouncilSeats(
   });
 }
 
+/*
+ * Initialisierung
+ */
+
 async function init() {
   try {
     const [
       factions,
-      persons,
-      officials
+      people,
+      councilSeats,
+      officials,
+      room
     ] = await Promise.all([
       loadJson("data/factions.json"),
-      loadJson("data/persons.json"),
-      loadJson("data/officials.json")
+      loadJson("data/people.json"),
+      loadJson("data/council-seats.json"),
+      loadJson("data/officials.json"),
+      loadJson("data/room.json")
     ]);
 
     renderLegend(factions);
-    renderOfficials(officials);
-    renderCouncilSeats(persons, factions);
+
+    renderOfficials(
+      officials,
+      people
+    );
+
+    renderCouncilSeats(
+      people,
+      councilSeats,
+      factions,
+      room.seatPositions
+    );
 
     document
-      .getElementById("resetSelection")
+      .getElementById(
+        "resetSelection"
+      )
       .addEventListener(
         "click",
         resetSelection
@@ -758,14 +1005,10 @@ async function init() {
       .querySelector(".map-wrap")
       .insertAdjacentHTML(
         "afterbegin",
-        `
-          <p role="alert">
-            <strong>Hinweis:</strong>
-            Die Daten konnten nicht geladen werden.
-            Starte die Seite über einen lokalen Webserver
-            oder GitHub Pages, nicht direkt als Datei.
-          </p>
-        `
+        `<p role="alert">
+          <strong>Hinweis:</strong>
+          Die JSON-Daten konnten nicht geladen werden.
+        </p>`
       );
   }
 }
