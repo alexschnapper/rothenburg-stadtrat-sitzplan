@@ -69,7 +69,7 @@
         <div class="map-wrap">
           <svg
             id="seatmap"
-            viewBox="0 0 1040 760"
+            viewBox="0 0 1040 920"
             role="img"
             aria-labelledby="svg-title svg-desc"
           >
@@ -109,7 +109,10 @@
               STADTSPITZE UND VERWALTUNG
             </text>
 
-            <!-- Zusammenhängende Tischanlage -->
+            <!--
+              Verlängerte U-förmige Tischanlage.
+              Die Seitentische sind länger als die obere und untere Tischseite.
+            -->
             <g
               class="tables"
               filter="url(#softShadow)"
@@ -117,28 +120,28 @@
               <path
                 class="table-surface"
                 d="
-                  M 138 55
-                  Q 110 55 110 83
+                  M 150 65
+                  Q 125 65 125 90
 
-                  V 632
-                  Q 110 660 138 660
+                  V 775
+                  Q 125 800 150 800
 
-                  H 902
-                  Q 930 660 930 632
+                  H 890
+                  Q 915 800 915 775
 
-                  V 83
-                  Q 930 55 902 55
+                  V 90
+                  Q 915 65 890 65
 
                   Z
 
-                  M 260 165
-                  V 516
-                  Q 260 540 284 540
+                  M 250 170
+                  V 650
+                  Q 250 675 275 675
 
-                  H 756
-                  Q 780 540 780 516
+                  H 765
+                  Q 790 675 790 650
 
-                  V 165
+                  V 170
                   Z
                 "
                 fill-rule="evenodd"
@@ -146,9 +149,8 @@
             </g>
 
             <!--
-              Stadtspitze, Verwaltung und Gäste werden per JavaScript
-              erzeugt. Die Gruppe steht nach der Tischfläche, damit die
-              Kreise sichtbar über dem Tisch liegen.
+              Stadtspitze, Verwaltung und geladene Gäste werden
+              aus officials.json per JavaScript erzeugt.
             -->
             <g
               id="officialsLayer"
@@ -312,14 +314,19 @@
               aria-label="Gewählte Mitglieder des Stadtrats"
             ></g>
 
+            <!--
+              Vorläufige Darstellung des öffentlichen Bereichs.
+              Eine realitätsnähere Darstellung als Gästebereich entlang
+              der unteren und linken Raumwand folgt in einem eigenen Issue.
+            -->
             <g class="audience">
               <path
-                d="M315 706 Q520 664 725 706"
+                d="M315 846 Q520 814 725 846"
               />
 
               <text
                 x="520"
-                y="732"
+                y="870"
                 text-anchor="middle"
               >
                 BESUCHERTRIBÜNE · ZUHÖREN, KEIN REDERECHT WÄHREND DER SITZUNG
