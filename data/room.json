@@ -19,8 +19,34 @@
       "count": 9
     }
   },
+  "seatPositions": [
+    { "seat": "L01", "x": 185, "y": 190 },
+    { "seat": "L02", "x": 185, "y": 238 },
+    { "seat": "L03", "x": 185, "y": 286 },
+    { "seat": "L04", "x": 185, "y": 334 },
+    { "seat": "L05", "x": 185, "y": 382 },
+    { "seat": "L06", "x": 185, "y": 430 },
+    { "seat": "L07", "x": 185, "y": 478 },
+    { "seat": "L08", "x": 185, "y": 526 },
+    { "seat": "L09", "x": 185, "y": 574 },
+    { "seat": "L10", "x": 185, "y": 622 },
+    { "seat": "U01", "x": 295, "y": 600 },
+    { "seat": "U02", "x": 407, "y": 600 },
+    { "seat": "U03", "x": 519, "y": 600 },
+    { "seat": "U04", "x": 631, "y": 600 },
+    { "seat": "U05", "x": 743, "y": 600 },
+    { "seat": "R01", "x": 855, "y": 595 },
+    { "seat": "R02", "x": 855, "y": 547 },
+    { "seat": "R03", "x": 855, "y": 499 },
+    { "seat": "R04", "x": 855, "y": 451 },
+    { "seat": "R05", "x": 855, "y": 403 },
+    { "seat": "R06", "x": 855, "y": 355 },
+    { "seat": "R07", "x": 855, "y": 307 },
+    { "seat": "R08", "x": 855, "y": 259 },
+    { "seat": "R09", "x": 855, "y": 211 }
+  ],
   "notes": [
     "Erste Version des Raummodells.",
-    "Koordinaten werden in einem späteren Schritt ergänzt."
+    "Die 24 Stadtratssitze werden über seatPositions positioniert."
   ]
 }

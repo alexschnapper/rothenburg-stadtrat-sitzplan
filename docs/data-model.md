@@ -24,35 +24,95 @@ Das folgende Diagramm zeigt, wie die verschiedenen Datenquellen
 miteinander verbunden sind.
 
 ```mermaid
-flowchart TD
-    people["people.json<br/>Personenstammdaten"]
-    factions["factions.json<br/>Fraktionen und Farben"]
-    councilSeats["council-seats.json<br/>Sitz- und Fraktionszuordnungen"]
-    officials["officials.json<br/>Stadtspitze, Verwaltung und Gäste"]
-    room["room.json<br/>Raum und Geometrie"]
-    renderer["seatmap.js<br/>Darstellung und Interaktion"]
+classDiagram
+    class Person {
+        +String id
+        +String name
+        +String|null partyId
+        +String photo
+        +String profileUrl
+        +String email
+        +String phone
+    }
 
-    people -->|"personId"| councilSeats
-    factions -->|"factionId"| councilSeats
+    class Faction {
+        +String id
+        +String name
+        +String shortName
+        +String color
+        +String textColor
+        +Number seats
+    }
 
-    people -.->|"optionale personId"| officials
+    class CouncilSeat {
+        +String id
+        +String seat
+        +String personId
+        +String factionId
+        +String office
+        +String[] roles
+        +String[] committees
+    }
 
-    room -->|"Sitzkennungen und Positionen"| councilSeats
-    room -->|"Official-Plätze"| officials
+    class Official {
+        +String id
+        +String seat
+        +String|null personId
+        +String shortLabel
+        +String office
+        +String type
+        +String[] roles
+    }
 
-    people --> renderer
-    factions --> renderer
-    councilSeats --> renderer
-    officials --> renderer
-    room --> renderer
+    class Room {
+        +Metadata metadata
+        +ViewBox viewBox
+        +SeatRows seatRows
+        +SeatPosition[] seatPositions
+    }
+
+    class Metadata {
+        +String id
+        +String name
+        +Number version
+    }
+
+    class ViewBox {
+        +Number width
+        +Number height
+    }
+
+    class SeatRows {
+        +Number left
+        +Number bottom
+        +Number right
+    }
+
+    class SeatPosition {
+        +String seat
+        +Number x
+        +Number y
+    }
+
+    Person "1" <-- "0..*" CouncilSeat : personId
+    Faction "1" <-- "0..*" CouncilSeat : factionId
+    Person "0..1" <-- "0..*" Official : personId
+
+    Room *-- Metadata
+    Room *-- ViewBox
+    Room *-- SeatRows
+    Room *-- "24" SeatPosition : seatPositions
+
+    SeatPosition "1" .. "1" CouncilSeat : gemeinsame Sitzkennung
+    Room ..> Official : geplante Platzkonfiguration
 ```
 
 ## Vereinfachtes UML-Datenmodell
 
-> Die Beziehungen zwischen `room.json`, den Stadtratssitzen und den
-> Official-Plätzen beschreiben das geplante Zielmodell. Die Koordinaten
-> werden erst in nachfolgenden Issues aus `seatmap.js` und
-> `officials.json` in die Raumkonfiguration verschoben.
+> Die Sitzpositionen der 24 gewählten Mitglieder werden bereits aus
+> `room.json` geladen. Die Positionen der Officials, die Tischgeometrie
+> und der zentrale Informationsbildschirm werden in späteren Schritten
+> ebenfalls in die Raumkonfiguration überführt.
 
 ```mermaid
 classDiagram
@@ -122,12 +182,9 @@ classDiagram
     Room ..> Official : definiert Plätze
 ```
 
-
 ## factions.json
 
-Beschreibt ausschließlich Fraktionen.
-
-Enthält beispielsweise:
+Beschreibt ausschließlich Fraktionen. Enthält beispielsweise:
 
 - Name
 - Kurzname
@@ -139,39 +196,116 @@ Enthält keine Personen.
 ## persons.json
 
 Beschreibt Personen unabhängig von ihrer Sitzposition.
-
 Enthält keine Koordinaten des Sitzungssaals.
 
 ## council-seats.json
 
-Ordnet Personen einer Sitzposition und einer Fraktion zu.
+`council-seats.json` ordnet Personen einer Sitzkennung und einer Fraktion zu.
 
-Enthält keine geometrischen Informationen.
+Die Datei enthält keine geometrischen Informationen. Die Position eines Sitzes wird separat über dieselbe Sitzkennung in `room.json` definiert.
+
+Beispiel:
+
+```json
+{
+  "id": "council-seat-l01",
+  "seat": "L01",
+  "personId": "person-l01",
+  "factionId": "csu",
+  "office": "",
+  "roles": [
+    "Stadtratsmitglied"
+  ],
+  "committees": []
+}
 
 ## officials.json
 
 Beschreibt Plätze der Stadtspitze, Verwaltung und Gäste.
-
 Derzeit enthält die Datei zusätzlich Positionsinformationen.
-
 Diese werden künftig nach `room.json` verschoben.
 
 ## room.json
 
-Beschreibt ausschließlich den Sitzungssaal.
+`room.json` beschreibt ausschließlich die räumliche Konfiguration des Sitzungssaals.
 
-Aktuell enthält die Datei lediglich das Grundschema.
+Die Datei enthält derzeit:
 
-Später werden hier unter anderem gespeichert:
+- Metadaten des Raums
+- die SVG-ViewBox
+- die Anzahl der Sitze je Sitzreihe
+- die konkreten SVG-Positionen der 24 Stadtratssitze
 
-- SVG ViewBox
-- Sitzreihen
-- Sitzkoordinaten
-- Positionen der Officials
-- Tischgeometrie
-- Position des Informationsbildschirms
+Personenbezogene Informationen und politische Zuordnungen werden hier bewusst nicht gespeichert.
 
-Personenbezogene Informationen werden hier bewusst nicht gespeichert.
+### Metadaten
+
+```json
+{
+  "metadata": {
+    "id": "rothenburg-grosser-sitzungssaal",
+    "name": "Großer Sitzungssaal",
+    "version": 1
+  }
+}```
+
+### SVG-ViewBox
+
+Die ViewBox definiert das Koordinatensystem der SVG-Darstellung:
+
+```json
+{
+  "viewBox": {
+    "width": 1040,
+    "height": 760
+  }
+}```
+
+### Sitzreihen
+
+`seatRows` dokumentiert die Anzahl der Plätze in den drei Sitzreihen:
+
+```json
+{
+  "seatRows": {
+    "left": {
+      "count": 10
+    },
+    "bottom": {
+      "count": 5
+    },
+    "right": {
+      "count": 9
+    }
+  }
+}
+```
+Die Summe der Sitzreihen ergibt 24 Stadtratssitze.
+
+### Sitzpositionen
+
+Die konkreten Positionen der Stadtratssitze werden im Feld seatPositions definiert.
+
+Jeder Eintrag verbindet eine Sitzkennung mit einer SVG-Position:
+
+```json
+{
+  "seat": "L01",
+  "x": 185,
+  "y": 190
+}
+```
+Die Sitzkennung verweist auf den entsprechenden Eintrag in `council-seats.json`.
+
+Dadurch bleiben die Verantwortlichkeiten getrennt:
+
+* `room.json` definiert, wo sich ein Sitz befindet.
+* `council-seats.json` definiert, welche Person und Fraktion diesem Sitz zugeordnet sind.
+* `people.json` enthält die personenbezogenen Stammdaten.
+* `factions.json` enthält Fraktionsnamen und Darstellungsfarben.
+
+Die Anwendung lädt `room.json` beim Start und verwendet `seatPositions` für die Positionierung der 24 interaktiven Sitze.
+
 
 ## Gemeinsame Personenfelder
 
@@ -211,4 +345,5 @@ Personenbezogene Informationen werden hier bewusst nicht gespeichert.
 - Nicht vorhandene Zuordnungen werden als `null` gespeichert.
 - Listen sind immer Arrays.
 - IDs und Sitzkennungen müssen eindeutig sein.
-
+- Sitzkennungen müssen zwischen `room.json` und `council-seats.json` übereinstimmen.
+- Jede Sitzzuordnung benötigt genau eine räumliche Sitzposition.

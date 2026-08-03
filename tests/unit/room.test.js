@@ -9,6 +9,7 @@ function readJson(path) {
 }
 
 const room = readJson("data/room.json");
+const councilSeats = readJson("data/council-seats.json");
 
 describe("Raumkonfiguration", () => {
   test("enthält die erwarteten Hauptbereiche", () => {
@@ -62,4 +63,73 @@ describe("Raumkonfiguration", () => {
       ).toBeGreaterThan(0);
     }
   });
+});
+
+test("enthält genau 24 Sitzpositionen", () => {
+  expect(room.seatPositions).toHaveLength(24);
+});
+
+test("jede Sitzposition verwendet eine eindeutige Sitzkennung", () => {
+  const seatIds = room.seatPositions.map(
+    (position) => position.seat
+  );
+
+  const duplicates = seatIds.filter(
+    (seat, index) => seatIds.indexOf(seat) !== index
+  );
+
+  expect(
+    [...new Set(duplicates)],
+    `Doppelte Sitzpositionen: ${duplicates.join(", ")}`
+  ).toEqual([]);
+});
+
+test("jede Sitzposition enthält gültige Koordinaten", () => {
+  for (const position of room.seatPositions) {
+    expect(
+      typeof position.seat,
+      "seat muss ein String sein"
+    ).toBe("string");
+
+    expect(
+      position.seat.trim().length,
+      "seat darf nicht leer sein"
+    ).toBeGreaterThan(0);
+
+    expect(
+      Number.isFinite(position.x),
+      `${position.seat}: x muss eine Zahl sein`
+    ).toBe(true);
+
+    expect(
+      Number.isFinite(position.y),
+      `${position.seat}: y muss eine Zahl sein`
+    ).toBe(true);
+  }
+});
+
+test("Raumpositionen und Sitzzuordnungen stimmen überein", () => {
+  const positionSeats = new Set(
+    room.seatPositions.map((position) => position.seat)
+  );
+
+  const assignmentSeats = new Set(
+    councilSeats.map((assignment) => assignment.seat)
+  );
+
+  const positionsWithoutAssignment = [...positionSeats]
+    .filter((seat) => !assignmentSeats.has(seat));
+
+  const assignmentsWithoutPosition = [...assignmentSeats]
+    .filter((seat) => !positionSeats.has(seat));
+
+  expect(
+    positionsWithoutAssignment,
+    `Positionen ohne Sitzzuordnung: ${positionsWithoutAssignment.join(", ")}`
+  ).toEqual([]);
+
+  expect(
+    assignmentsWithoutPosition,
+    `Sitzzuordnungen ohne Position: ${assignmentsWithoutPosition.join(", ")}`
+  ).toEqual([]);
 });
