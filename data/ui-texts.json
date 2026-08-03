@@ -1,0 +1,66 @@
+{
+  "page": {
+    "documentTitle": "Stadtrat Rothenburg ob der Tauber – Sitzplan",
+    "description": "Interaktiver Sitzplan des Stadtrats Rothenburg ob der Tauber",
+    "eyebrow": "Kommunalpolitik verständlich dargestellt",
+    "title": "Sitzordnung des Rothenburger Stadtrats",
+    "lead": "Die Darstellung orientiert sich am tatsächlichen Sitzungssaal aus Sicht der Besuchertribüne. Einen Sitz anklicken oder mit der Tastatur auswählen, um Details anzuzeigen."
+  },
+  "seatmap": {
+    "title": "Großer Sitzungssaal",
+    "summary": "24 gewählte Stadtratsmitglieder · schematische 2D-Draufsicht",
+    "officialsLabel": "STADTSPITZE UND VERWALTUNG",
+    "resetButton": "Auswahl zurücksetzen",
+    "svgTitle": "Sitzordnung des Stadtrats Rothenburg ob der Tauber",
+    "svgDescription": "U-förmige Sitzordnung mit 24 nach Fraktionen eingefärbten Sitzen, Stadtspitze, Verwaltung, Gästeplätzen und einer Informationsanzeige in der Mitte.",
+    "officialsAriaLabel": "Stadtspitze, Verwaltung und geladene Gäste",
+    "councilSeatsAriaLabel": "Gewählte Mitglieder des Stadtrats"
+  },
+  "display": {
+    "eyebrow": "INFORMATIONSSYSTEM",
+    "title": "Rothenburg ob der Tauber",
+    "description": "Informationen zur Sitzordnung",
+    "defaultHint": "Bitte einen Sitz auswählen",
+    "mobileSelectionHint": "Details unterhalb des Sitzplans",
+    "detailHint": "Weitere Details im Informationsbereich"
+  },
+  "details": {
+    "emptyTitle": "Sitz auswählen",
+    "emptyText": "Einen Sitz auswählen, um Informationen zur Person, Fraktion oder Funktion anzuzeigen.",
+    "seatLabel": "Sitz",
+    "placeLabel": "Platz",
+    "factionLabel": "Fraktion",
+    "areaLabel": "Bereich",
+    "committeesLabel": "Ausschüsse",
+    "profileLink": "Zum Ratsinformationssystem",
+    "unassignedName": "Nicht besetzt"
+  },
+  "categories": {
+    "administration": "Stadtverwaltung",
+    "leadership": "Stadtspitze",
+    "invitedGuests": "Geladene Gäste",
+    "officialsFallback": "Stadtspitze und Verwaltung"
+  },
+  "legend": {
+    "ariaLabel": "Fraktionslegende",
+    "seatsLabel": "Sitze"
+  },
+  "audience": {
+    "label": "BESUCHERTRIBÜNE · ZUHÖREN, KEIN REDERECHT WÄHREND DER SITZUNG"
+  },
+  "explanation": {
+    "leadershipTitle": "Stadtspitze",
+    "leadershipText": "Der Oberbürgermeister sitzt mittig an der hinteren Reihe. Links davon ist der Platz des ersten Bürgermeisters, rechts der Platz der zweiten Bürgermeisterin.",
+    "administrationTitle": "Verwaltung und Gäste",
+    "administrationText": "Weitere Plätze in dieser Reihe sind für die Stadtverwaltung vorgesehen. Die beiden Plätze rechts aus Sicht der Besuchertribüne sind für eingeladene Referentinnen, Referenten oder Gäste.",
+    "displayTitle": "Informationsanzeige",
+    "displayText": "Über die Monitore in der Saalmitte werden Informationen zu Tagesordnungspunkten gezeigt. In der interaktiven Darstellung erscheint dort zusätzlich die ausgewählte Person."
+  },
+  "errors": {
+    "dataLoadTitle": "Hinweis:",
+    "dataLoadText": "Die Daten konnten nicht geladen werden. Starte die Seite über einen lokalen Webserver oder GitHub Pages.",
+    "missingOfficialsLayer": "Das SVG-Element #officialsLayer wurde nicht gefunden.",
+    "missingSeatsLayer": "Das SVG-Element #seatsLayer wurde nicht gefunden.",
+    "invalidSeatPositions": "room.seatPositions muss ein Array sein."
+  }
+}
