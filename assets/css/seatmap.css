@@ -270,11 +270,6 @@ h1 {
   stroke-width: 2;
 }
 
-#monitorDefault[hidden],
-#monitorPersonDetails[hidden] {
-  display: none;
-}
-
 /* Leere Monitoransicht */
 
 .monitor-default,
@@ -362,11 +357,6 @@ h1 {
   .monitor-person-details {
     animation: none;
   }
-}
-
-
-.monitor-faction-accent {
-  fill: #777777;
 }
 
 .monitor-detail-faction {
@@ -544,17 +534,14 @@ dd {
 /* Erläuterungen */
 
 .explanation {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .explanation article {
-  padding: 22px;
-  background: rgba(255, 255, 255, 0.65);
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.55);
   border: 1px solid rgba(90, 70, 48, 0.1);
-  border-radius: 18px;
+  border-radius: 16px;
 }
 
 .explanation h2 {
@@ -563,9 +550,7 @@ dd {
 }
 
 .explanation p {
-  margin-bottom: 0;
-  color: var(--muted);
-  line-height: 1.55;
+  max-width: 900px;
 }
 
 code {
@@ -573,6 +558,63 @@ code {
   background: #f0ece5;
   border-radius: 5px;
 }
+
+/* Desktop-Optimierung */
+
+@media (min-width: 901px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+
+  .map-wrap {
+    padding: 16px;
+  }
+
+  .info-panel {
+    min-width: 0;
+    align-items: flex-start;
+    padding: 26px 24px;
+  }
+
+  .info-panel > div {
+    width: 100%;
+  }
+
+  .info-panel h3 {
+    margin-top: 10px;
+    font-size: 1.4rem;
+  }
+
+  .info-panel p {
+    margin-top: 6px;
+    font-size: 0.95rem;
+  }
+
+  .info-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+
+  dl {
+    margin: 18px 0;
+  }
+
+  dl div {
+    gap: 12px;
+    padding: 9px 0;
+  }
+
+  .primary-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .legend {
+    padding: 16px 22px 20px;
+  }
+}
+
 
 /* Tablet */
 
