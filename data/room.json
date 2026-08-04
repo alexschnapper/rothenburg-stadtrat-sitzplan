@@ -2,7 +2,8 @@
   "metadata": {
     "id": "rothenburg-grosser-sitzungssaal",
     "name": "Großer Sitzungssaal",
-    "version": 1
+    "version": 1,
+    "schemaVersion": 2
   },
   "viewBox": {
     "width": 1040,
@@ -19,6 +20,48 @@
       "count": 9
     }
   },
+  "factionAreas": [
+    {
+      "id": "faction-area-csu",
+      "factionId": "csu",
+      "order": 1,
+      "segments": [
+        { "x": 151, "y": 177, "width": 68, "height": 310, "radius": 24 }
+      ]
+    },
+    {
+      "id": "faction-area-ur",
+      "factionId": "ur",
+      "order": 2,
+      "segments": [
+        { "x": 151, "y": 505, "width": 68, "height": 132, "radius": 24 }
+      ]
+    },
+    {
+      "id": "faction-area-frv",
+      "factionId": "frv",
+      "order": 3,
+      "segments": [
+        { "x": 306, "y": 681, "width": 428, "height": 68, "radius": 24 }
+      ]
+    },
+    {
+      "id": "faction-area-gruene",
+      "factionId": "gruene",
+      "order": 4,
+      "segments": [
+        { "x": 821, "y": 505, "width": 68, "height": 132, "radius": 24 }
+      ]
+    },
+    {
+      "id": "faction-area-spd",
+      "factionId": "spd",
+      "order": 5,
+      "segments": [
+        { "x": 821, "y": 224, "width": 68, "height": 263, "radius": 24 }
+      ]
+    }
+  ],
   "seatPositions": [
     { "seat": "L01", "x": 185, "y": 190 },
     { "seat": "L02", "x": 185, "y": 237 },
