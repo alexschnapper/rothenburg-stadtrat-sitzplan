@@ -67,34 +67,35 @@ test("zeigt automatisch erzeugte Buildinformationen", async ({
   ).toBeHidden();
 });
 
-test("zeigt genau 24 Stadtratssitze", async ({ page }) => {
+test("zeigt fünf Fraktionsbereiche", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.locator(".seat")).toHaveCount(24);
+  await expect(page.locator(".faction-area")).toHaveCount(5);
+  await expect(page.locator(".seat")).toHaveCount(0);
 });
 
-test("öffnet Personendetails nach Auswahl eines Sitzes", async ({
+test("öffnet Fraktionsdetails nach Auswahl eines Bereichs", async ({
   page
 }) => {
   await page.goto("/");
 
-  const firstSeat = page.locator(".seat").first();
+  const firstArea = page.locator(".faction-area").first();
 
-  await firstSeat.click();
+  await firstArea.click();
 
   await expect(page.locator("#personDetails")).toBeVisible();
-  await expect(page.locator("#detailSeat")).not.toBeEmpty();
-  await expect(firstSeat).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#detailFaction")).not.toBeEmpty();
+  await expect(firstArea).toHaveAttribute("aria-pressed", "true");
 });
 
-test("Sitze können mit der Tastatur ausgewählt werden", async ({
+test("Fraktionsbereiche können mit der Tastatur ausgewählt werden", async ({
   page
 }) => {
   await page.goto("/");
 
-  const firstSeat = page.locator(".seat").first();
+  const firstArea = page.locator(".faction-area").first();
 
-  await firstSeat.focus();
+  await firstArea.focus();
   await page.keyboard.press("Enter");
 
   await expect(page.locator("#personDetails")).toBeVisible();
@@ -137,8 +138,8 @@ test.describe("Monitor-Personendetails", () => {
 
     await page.goto("/");
 
-    await expect(page.locator(".seat")).toHaveCount(24);
-    await page.locator(".seat").first().click();
+    await expect(page.locator(".faction-area")).toHaveCount(5);
+    await page.locator(".faction-area").first().click();
 
     const monitorDefault = page.locator("#monitorDefault");
     const monitorDetails = page.locator("#monitorPersonDetails");
@@ -160,7 +161,7 @@ test.describe("Monitor-Personendetails", () => {
     );
 
     await page.goto("/");
-    await page.locator(".seat").first().click();
+    await page.locator(".faction-area").first().click();
 
     await page
       .getByRole("button", { name: "Auswahl zurücksetzen" })
@@ -185,7 +186,7 @@ test.describe("Monitor-Personendetails", () => {
     );
 
     await page.goto("/");
-    await page.locator(".seat").first().click();
+    await page.locator(".faction-area").first().click();
 
     await expect(page.locator("#personDetails")).toBeVisible();
 
