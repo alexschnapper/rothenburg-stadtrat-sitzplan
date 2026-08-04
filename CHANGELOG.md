@@ -11,10 +11,12 @@ Die Versionsnummern folgen [Semantic Versioning](https://semver.org/lang/de/).
 
 - Footer mit aktueller Versionsnummer und Link zum GitHub-Repository
 - automatisch erzeugte Buildnummer und Build-Datum im Footer
+- konfigurierbare Fraktionsbereiche in der Raumgeometrie
 
 ### Changed
 
 - GitHub Pages wird über einen eigenen Deployment-Workflow veröffentlicht
+- die Standardansicht zeigt Fraktionsbereiche statt fest zugeordneter Personensitze
 
 ### Fixed
 
