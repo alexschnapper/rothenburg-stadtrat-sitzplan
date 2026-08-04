@@ -321,6 +321,55 @@ test("behält den Displayrahmen nach Fraktionsauswahl", async ({
     page.locator("#monitorPersonDetails")
   ).toHaveAttribute("aria-hidden", "false");
 });
+
+test("zeigt den längsten Fraktionsnamen vollständig im Monitor", async ({
+  page
+}) => {
+  test.skip(
+    (page.viewportSize()?.width ?? 0) <= 600,
+    "Die zentrale Detailanzeige wird mobil nicht verwendet."
+  );
+
+  await page.goto("/");
+
+  await page
+    .getByRole("button", {
+      name: /Sozialdemokratische Partei Deutschlands/
+    })
+    .click();
+
+  await expect(
+    page.locator("#monitorPersonName tspan")
+  ).toHaveText([
+    "Sozialdemokratische Partei",
+    "Deutschlands"
+  ]);
+
+  const bounds = await page.evaluate(() => {
+    const screen = document
+      .querySelector(".central-display-screen")
+      .getBoundingClientRect();
+    const name = document
+      .querySelector("#monitorPersonName")
+      .getBoundingClientRect();
+
+    return {
+      screenLeft: screen.left,
+      screenRight: screen.right,
+      screenTop: screen.top,
+      screenBottom: screen.bottom,
+      nameLeft: name.left,
+      nameRight: name.right,
+      nameTop: name.top,
+      nameBottom: name.bottom
+    };
+  });
+
+  expect(bounds.nameLeft).toBeGreaterThan(bounds.screenLeft);
+  expect(bounds.nameRight).toBeLessThan(bounds.screenRight);
+  expect(bounds.nameTop).toBeGreaterThan(bounds.screenTop);
+  expect(bounds.nameBottom).toBeLessThan(bounds.screenBottom);
+});
 test("aktualisiert mobil den Hinweis im zentralen Display", async ({
   page
 }) => {

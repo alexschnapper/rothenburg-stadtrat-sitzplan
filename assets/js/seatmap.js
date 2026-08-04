@@ -647,9 +647,9 @@ function showPersonInMonitor(person, faction) {
   setSvgTextLines(
     personName,
     splitText(person.name, 27),
-    392,
-    320,
-    28
+    346,
+    298,
+    30
   );
 
   personOffice.textContent =
@@ -756,9 +756,9 @@ function showOfficialInMonitor(official) {
       official.name || official.office,
       27
     ),
-    392,
-    320,
-    28
+    346,
+    298,
+    30
   );
 
   personOffice.textContent =
