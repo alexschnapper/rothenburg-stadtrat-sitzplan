@@ -68,6 +68,7 @@
           class="secondary-button"
           id="resetSelection"
           type="button"
+          aria-controls="personDetails seatmap"
           data-ui-text="seatmap.resetButton"
         >
           Auswahl zurücksetzen
@@ -79,7 +80,7 @@
           <svg
             id="seatmap"
             viewBox="0 0 1040 920"
-            role="img"
+            role="group"
             aria-labelledby="svg-title svg-desc"
           >
             <title
@@ -332,6 +333,7 @@
             <!-- Die Fraktionsbereiche werden per JavaScript erzeugt -->
             <g
               id="seatsLayer"
+              role="group"
               aria-label="Fraktionsbereiche des Stadtrats"
               data-ui-aria-label="seatmap.councilSeatsAriaLabel"
             ></g>
@@ -361,6 +363,8 @@
         <aside
           class="info-panel"
           aria-live="polite"
+          aria-atomic="true"
+          aria-relevant="additions text"
         >
           <div id="emptyState">
             <span

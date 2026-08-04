@@ -427,7 +427,8 @@ function renderOfficials(officials, people) {
       role: "button",
       "aria-label":
         buildOfficialAriaLabel(displayOfficial),
-      "aria-pressed": "false"
+      "aria-pressed": "false",
+      "aria-controls": "personDetails"
     });
 
     const hitArea = svgEl("circle", {
@@ -1099,7 +1100,8 @@ function renderCouncilSeats(
       role: "button",
       "aria-label":
         `${displayData.name}, ${faction.name}, Sitz ${displayData.seat}`,
-      "aria-pressed": "false"
+      "aria-pressed": "false",
+      "aria-controls": "personDetails"
     });
 
     const hitArea = svgEl("circle", {
@@ -1199,7 +1201,8 @@ function renderFactionAreas(factions, factionAreas) {
         tabindex: "0",
         role: "button",
         "aria-label": `${faction.name}, ${faction.seats} Mitglieder`,
-        "aria-pressed": "false"
+        "aria-pressed": "false",
+        "aria-controls": "personDetails"
       });
 
       area.segments.forEach((segment) => {

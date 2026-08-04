@@ -144,6 +144,124 @@ test("Fraktionsbereiche können mit der Tastatur ausgewählt werden", async ({
   await expect(page.locator("#personDetails")).toBeVisible();
 });
 
+test("stellt Fraktionsbereiche als zugängliche Schaltflächen bereit", async ({
+  page
+}) => {
+  await page.goto("/");
+
+  await expect(page.locator("#seatmap")).toHaveAttribute(
+    "role",
+    "group"
+  );
+  await expect(page.locator("#seatsLayer")).toHaveAttribute(
+    "role",
+    "group"
+  );
+
+  const areas = page.locator(".faction-area");
+  await expect(areas).toHaveCount(5);
+
+  for (let index = 0; index < 5; index += 1) {
+    const area = areas.nth(index);
+
+    await expect(area).toHaveAttribute("role", "button");
+    await expect(area).toHaveAttribute("tabindex", "0");
+    await expect(area).toHaveAttribute("aria-pressed", "false");
+    await expect(area).toHaveAttribute(
+      "aria-controls",
+      "personDetails"
+    );
+    await expect(area).toHaveAttribute(
+      "aria-label",
+      /.+, \d+ Mitglieder/
+    );
+  }
+});
+
+test("durchläuft Fraktionsbereiche in konfigurierter Reihenfolge", async ({
+  page
+}) => {
+  await page.goto("/");
+
+  const areas = page.locator(".faction-area");
+  await areas.first().focus();
+
+  for (let index = 0; index < 5; index += 1) {
+    await expect(areas.nth(index)).toBeFocused();
+
+    if (index < 4) {
+      await page.keyboard.press("Tab");
+    }
+  }
+});
+
+test("wählt eine Fraktion mit der Leertaste aus", async ({ page }) => {
+  await page.goto("/");
+
+  const area = page.locator(".faction-area").nth(1);
+  await area.focus();
+  await page.keyboard.press("Space");
+
+  await expect(area).toBeFocused();
+  await expect(area).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#personDetails")).toBeVisible();
+});
+
+test("setzt die Fraktionsauswahl mit Escape zurück", async ({ page }) => {
+  await page.goto("/");
+
+  const area = page.locator(".faction-area").first();
+  await area.focus();
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Escape");
+
+  await expect(area).toBeFocused();
+  await expect(area).toHaveAttribute("aria-pressed", "false");
+  await expect(page.locator("#personDetails")).toBeHidden();
+  await expect(page.locator("#emptyState")).toBeVisible();
+});
+
+test("kündigt Fraktionsdetails als zusammenhängende Aktualisierung an", async ({
+  page
+}) => {
+  await page.goto("/");
+
+  const panel = page.locator(".info-panel");
+  await expect(panel).toHaveAttribute("aria-live", "polite");
+  await expect(panel).toHaveAttribute("aria-atomic", "true");
+  await expect(panel).toHaveAttribute(
+    "aria-relevant",
+    "additions text"
+  );
+
+  await page.locator(".faction-area").first().click();
+
+  await expect(panel.locator("#detailName")).not.toBeEmpty();
+  await expect(panel.locator("#detailSeatLabel")).toHaveText(
+    "Mitglieder"
+  );
+});
+
+test("behält mobil den Fokus außerhalb versteckter Monitorinhalte", async ({
+  page
+}) => {
+  test.skip(
+    (page.viewportSize()?.width ?? 0) > 600,
+    "Dieser Test ist nur für mobile Ansichten relevant."
+  );
+
+  await page.goto("/");
+
+  const area = page.locator(".faction-area").first();
+  await area.focus();
+  await page.keyboard.press("Space");
+
+  await expect(area).toBeFocused();
+  await expect(page.locator("#centralDisplayFrame")).toBeHidden();
+  await expect(page.locator("#monitorPersonDetails")).toBeHidden();
+  await expect(page.locator("#personDetails")).toBeVisible();
+});
+
 test("verursacht keine horizontale Überbreite", async ({ page }) => {
   await page.goto("/");
 

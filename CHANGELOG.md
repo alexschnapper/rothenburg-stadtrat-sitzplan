@@ -20,6 +20,7 @@ Die Versionsnummern folgen [Semantic Versioning](https://semver.org/lang/de/).
 - der zentrale Monitor bietet mehr Platz für lange Fraktionsnamen
 - Smartphone-Ansichten zeigen Details unterhalb des Plans ohne Innenmonitor
 - ausgewählte Fraktionsbereiche erhalten eine eindeutige Häkchen-Markierung
+- Fraktionsauswahl und Detailaktualisierung besitzen verbesserte Screenreader-Semantik
 
 ### Fixed
 
