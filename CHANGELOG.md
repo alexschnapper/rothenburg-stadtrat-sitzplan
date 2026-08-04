@@ -17,6 +17,7 @@ Die Versionsnummern folgen [Semantic Versioning](https://semver.org/lang/de/).
 
 - GitHub Pages wird über einen eigenen Deployment-Workflow veröffentlicht
 - die Standardansicht zeigt Fraktionsbereiche statt fest zugeordneter Personensitze
+- der zentrale Monitor bietet mehr Platz für lange Fraktionsnamen
 
 ### Fixed
 
