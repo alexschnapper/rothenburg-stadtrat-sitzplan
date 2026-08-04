@@ -553,6 +553,34 @@ dd {
   max-width: 900px;
 }
 
+/* Seitenabschluss */
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 18px 4px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--ink);
+  font-weight: 750;
+  text-underline-offset: 0.2em;
+}
+
+.site-footer a:hover {
+  text-decoration-thickness: 2px;
+}
+
 code {
   padding: 0.1em 0.35em;
   background: #f0ece5;
@@ -715,5 +743,12 @@ code {
 
   .explanation article {
     padding: 18px;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 22px 18px 0;
+    padding-top: 16px;
   }
 }
