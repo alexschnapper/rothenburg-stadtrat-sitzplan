@@ -709,20 +709,10 @@ code {
 /* Smartphone */
 
 @media (max-width: 600px) {
+  #centralDisplayFrame,
+  #monitorDefault,
   #monitorPersonDetails {
     display: none;
-  }
-
-  #monitorDefault:not([hidden]) {
-    display: inline;
-  }
-  .monitor-default-title {
-    font-size: 21px;
-  }
-
-  .monitor-default-description,
-  .monitor-default-hint {
-    font-size: 13px;
   }
 
   .page-shell {
