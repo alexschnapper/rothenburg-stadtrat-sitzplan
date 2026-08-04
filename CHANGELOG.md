@@ -19,6 +19,7 @@ Die Versionsnummern folgen [Semantic Versioning](https://semver.org/lang/de/).
 - die Standardansicht zeigt Fraktionsbereiche statt fest zugeordneter Personensitze
 - der zentrale Monitor bietet mehr Platz für lange Fraktionsnamen
 - Smartphone-Ansichten zeigen Details unterhalb des Plans ohne Innenmonitor
+- ausgewählte Fraktionsbereiche erhalten eine eindeutige Häkchen-Markierung
 
 ### Fixed
 

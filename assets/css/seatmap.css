@@ -404,6 +404,27 @@ h1 {
     stroke-width 0.16s ease;
 }
 
+.faction-area-selection {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.16s ease;
+}
+
+.faction-area-selection circle {
+  fill: #ffffff;
+  stroke: #24211e;
+  stroke-width: 2;
+}
+
+.faction-area-selection path {
+  fill: none;
+  stroke: #24211e;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
 .faction-area-label {
   pointer-events: none;
   text-anchor: middle;
@@ -417,15 +438,27 @@ h1 {
   font-weight: 700;
 }
 
-.faction-area:hover .faction-area-segment,
-.faction-area:focus .faction-area-segment,
-.faction-area[aria-pressed="true"] .faction-area-segment {
+.faction-area:hover .faction-area-segment {
   filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.24));
-  stroke-width: 7;
+  stroke-width: 5;
 }
 
 .faction-area:focus-visible .faction-area-segment {
   stroke: var(--focus);
+  stroke-dasharray: 10 5;
+  stroke-width: 6;
+}
+
+.faction-area[aria-pressed="true"] .faction-area-segment {
+  filter: drop-shadow(0 7px 8px rgba(0, 0, 0, 0.3));
+  stroke: #ffffff;
+  stroke-dasharray: none;
+  stroke-width: 8;
+}
+
+.faction-area[aria-pressed="true"] .faction-area-selection {
+  visibility: visible;
+  opacity: 1;
 }
 
 .seat {

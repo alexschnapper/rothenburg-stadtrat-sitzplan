@@ -86,6 +86,29 @@ test("öffnet Fraktionsdetails nach Auswahl eines Bereichs", async ({
   await expect(page.locator("#personDetails")).toBeVisible();
   await expect(page.locator("#detailFaction")).not.toBeEmpty();
   await expect(firstArea).toHaveAttribute("aria-pressed", "true");
+  await expect(
+    firstArea.locator(".faction-area-selection")
+  ).toBeVisible();
+});
+
+test("entfernt die sichtbare Fraktionsauswahl beim Reset", async ({
+  page
+}) => {
+  await page.goto("/");
+
+  const firstArea = page.locator(".faction-area").first();
+  const selection = firstArea.locator(".faction-area-selection");
+
+  await expect(selection).toBeHidden();
+  await firstArea.click();
+  await expect(selection).toBeVisible();
+
+  await page
+    .getByRole("button", { name: "Auswahl zurücksetzen" })
+    .click();
+
+  await expect(firstArea).toHaveAttribute("aria-pressed", "false");
+  await expect(selection).toBeHidden();
 });
 
 test("verlinkt Fraktionsdetails mit dem Ratsinformationssystem", async ({
