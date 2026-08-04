@@ -22,6 +22,8 @@ Die Versionsnummern folgen [Semantic Versioning](https://semver.org/lang/de/).
 
 ### Fixed
 
+- Link zum Ratsinformationssystem in der Fraktionsdetailansicht wiederhergestellt
+
 ## [0.3.0] - 2026-08-01
 
 ### Added

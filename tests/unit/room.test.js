@@ -59,6 +59,15 @@ describe("Raumkonfiguration", () => {
     }
   });
 
+  test("Fraktionen verweisen sicher auf das Ratsinformationssystem", () => {
+    for (const faction of factions) {
+      const informationUrl = new URL(faction.informationUrl);
+
+      expect(informationUrl.protocol).toBe("https:");
+      expect(informationUrl.hostname).toBe("ratsinfo.rothenburg.de");
+    }
+  });
+
   test("hält alle Fraktionssegmente innerhalb der ViewBox", () => {
     for (const area of room.factionAreas) {
       for (const segment of area.segments) {

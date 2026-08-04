@@ -88,6 +88,26 @@ test("öffnet Fraktionsdetails nach Auswahl eines Bereichs", async ({
   await expect(firstArea).toHaveAttribute("aria-pressed", "true");
 });
 
+test("verlinkt Fraktionsdetails mit dem Ratsinformationssystem", async ({
+  page
+}) => {
+  await page.goto("/");
+
+  await page.locator(".faction-area").first().click();
+
+  const link = page.getByRole("link", {
+    name: "Zum Ratsinformationssystem"
+  });
+
+  await expect(link).toBeVisible();
+  await expect(link).toHaveAttribute(
+    "href",
+    "https://ratsinfo.rothenburg.de/fraktionen"
+  );
+  await expect(link).toHaveAttribute("target", "_blank");
+  await expect(link).toHaveAttribute("rel", "noopener");
+});
+
 test("Fraktionsbereiche können mit der Tastatur ausgewählt werden", async ({
   page
 }) => {

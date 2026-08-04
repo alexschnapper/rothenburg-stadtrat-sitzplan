@@ -499,8 +499,23 @@ function setDetailLink(profileUrl) {
   const detailLink =
     document.getElementById("detailLink");
 
-  if (profileUrl) {
-    detailLink.href = profileUrl;
+  let validUrl = "";
+
+  try {
+    const candidate = new URL(profileUrl);
+
+    if (
+      candidate.protocol === "https:" ||
+      candidate.protocol === "http:"
+    ) {
+      validUrl = candidate.href;
+    }
+  } catch {
+    validUrl = "";
+  }
+
+  if (validUrl) {
+    detailLink.href = validUrl;
     detailLink.hidden = false;
     return;
   }
@@ -868,7 +883,8 @@ function showFaction(faction, areaNode) {
     seatLabel: uiText("details.membersLabel", "Mitglieder"),
     seat: String(faction.seats),
     categoryLabel: uiText("details.factionLabel", "Fraktion"),
-    categoryValue: faction.shortName
+    categoryValue: faction.shortName,
+    profileUrl: faction.informationUrl
   });
 
   showFactionInMonitor(faction);
