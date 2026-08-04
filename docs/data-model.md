@@ -10,6 +10,11 @@ Dieses Dokument beschreibt das logische Datenmodell.
 Es dokumentiert sowohl den aktuellen Stand als auch bereits
 beschlossene Zielstrukturen zukünftiger Versionen.
 
+Die beschlossene Zielstruktur für eine Darstellung nach Fraktionsbereichen
+ist in [Fraktionsbereiche im Datenmodell](faction-area-data-model.md)
+dokumentiert. Bis zu ihrer Implementierung beschreibt der folgende Abschnitt
+weiterhin das produktive sitzbasierte Modell.
+
 | Datei | Aufgabe |
 |-------|----------|
 | `factions.json` | Fraktionen und Farben |
