@@ -190,11 +190,9 @@ test.describe("Monitor-Personendetails", () => {
 
     await expect(page.locator("#personDetails")).toBeVisible();
 
-    await expect(page.locator("#monitorDefault"))
-      .not.toHaveAttribute("hidden", "");
-
-    await expect(page.locator("#monitorPersonDetails"))
-      .toHaveAttribute("hidden", "");
+    await expect(page.locator("#centralDisplayFrame")).toBeHidden();
+    await expect(page.locator("#monitorDefault")).toBeHidden();
+    await expect(page.locator("#monitorPersonDetails")).toBeHidden();
   });
 });
 
@@ -370,7 +368,7 @@ test("zeigt den längsten Fraktionsnamen vollständig im Monitor", async ({
   expect(bounds.nameTop).toBeGreaterThan(bounds.screenTop);
   expect(bounds.nameBottom).toBeLessThan(bounds.screenBottom);
 });
-test("aktualisiert mobil den Hinweis im zentralen Display", async ({
+test("blendet den zentralen Monitor mobil vollständig aus", async ({
   page
 }) => {
   test.skip(
@@ -380,27 +378,18 @@ test("aktualisiert mobil den Hinweis im zentralen Display", async ({
 
   await page.goto("/");
 
-  const hint = page.locator("#monitorDefaultHint");
-
-  await expect(hint).toHaveText(
-    "Bitte einen Fraktionsbereich auswählen"
-  );
+  await expect(page.locator("#centralDisplayFrame")).toBeHidden();
+  await expect(page.locator("#monitorDefault")).toBeHidden();
+  await expect(page.locator("#monitorPersonDetails")).toBeHidden();
 
   await page.locator(".faction-area").first().click();
 
-  await expect(hint).toHaveText(
-    "Details unterhalb des Sitzplans"
-  );
-
-  await expect(
-    page.locator("#monitorPersonDetails")
-  ).toHaveAttribute("hidden", "");
-
-  await expect(
-    page.locator("#personDetails")
-  ).toBeVisible();
+  await expect(page.locator("#centralDisplayFrame")).toBeHidden();
+  await expect(page.locator("#monitorDefault")).toBeHidden();
+  await expect(page.locator("#monitorPersonDetails")).toBeHidden();
+  await expect(page.locator("#personDetails")).toBeVisible();
 });
-test("setzt mobil den Monitorhinweis zurück", async ({
+test("setzt mobil den unteren Detailbereich zurück", async ({
   page
 }) => {
   test.skip(
@@ -410,19 +399,15 @@ test("setzt mobil den Monitorhinweis zurück", async ({
 
   await page.goto("/");
 
-  const hint = page.locator("#monitorDefaultHint");
-
   await page.locator(".faction-area").first().click();
 
-  await expect(hint).toHaveText(
-    "Details unterhalb des Sitzplans"
-  );
+  await expect(page.locator("#personDetails")).toBeVisible();
 
   await page
     .getByRole("button", { name: "Auswahl zurücksetzen" })
     .click();
 
-  await expect(hint).toHaveText(
-    "Bitte einen Fraktionsbereich auswählen"
-  );
+  await expect(page.locator("#personDetails")).toBeHidden();
+  await expect(page.locator("#emptyState")).toBeVisible();
+  await expect(page.locator("#centralDisplayFrame")).toBeHidden();
 });
