@@ -553,6 +553,35 @@ dd {
   max-width: 900px;
 }
 
+/* Seitenabschluss */
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 18px 4px 36px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  color: var(--ink);
+  font-weight: 750;
+  text-underline-offset: 0.2em;
+}
+
+.site-footer a:hover {
+  text-decoration-thickness: 2px;
+}
+
 code {
   padding: 0.1em 0.35em;
   background: #f0ece5;
@@ -715,5 +744,13 @@ code {
 
   .explanation article {
     padding: 18px;
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    width: auto;
+    margin: 0 18px;
+    padding: 16px 0 24px;
   }
 }

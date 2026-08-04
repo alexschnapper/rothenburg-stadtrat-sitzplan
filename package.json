@@ -1,6 +1,6 @@
 {
   "name": "rothenburg-stadtrat-sitzplan",
-  "version": "1.0.0",
+  "version": "0.4.0",
   "description": "Erster funktionsfähiger Prototyp einer interaktiven 2D-Sitzordnung des Stadtrats Rothenburg ob der Tauber.",
   "main": "index.js",
   "scripts": {

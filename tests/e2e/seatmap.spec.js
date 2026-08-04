@@ -10,6 +10,21 @@ test("lädt die Sitzplanseite", async ({ page }) => {
   ).toBeVisible();
 });
 
+test("zeigt Version und GitHub-Link im Footer", async ({ page }) => {
+  await page.goto("/");
+
+  const footer = page.getByRole("contentinfo");
+
+  await expect(footer.locator("#appVersion")).toHaveText("v0.4.0");
+
+  await expect(
+    footer.getByRole("link", { name: "Projekt auf GitHub" })
+  ).toHaveAttribute(
+    "href",
+    "https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan"
+  );
+});
+
 test("zeigt genau 24 Stadtratssitze", async ({ page }) => {
   await page.goto("/");
 

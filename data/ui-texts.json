@@ -52,6 +52,10 @@
       "overviewTitle": "Hinweise zum Sitzungssaal",
       "overviewText": "Stadtspitze, Verwaltung und geladene Gäste sitzen an der oberen Tischseite. Der zentrale Bildschirm zeigt Informationen zur Sitzordnung und zur ausgewählten Person."
     },
+    "footer": {
+      "versionLabel": "Version",
+      "repositoryLink": "Projekt auf GitHub"
+    },
     "errors": {
       "dataLoadTitle": "Hinweis:",
       "dataLoadText": "Die Daten konnten nicht geladen werden. Starte die Seite über einen lokalen Webserver oder GitHub Pages.",
