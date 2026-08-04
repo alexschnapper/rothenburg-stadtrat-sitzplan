@@ -572,6 +572,12 @@ dd {
   margin: 0;
 }
 
+.build-information {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
 .site-footer a {
   color: var(--ink);
   font-weight: 750;
