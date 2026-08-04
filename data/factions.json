@@ -5,6 +5,7 @@
     "shortName": "CSU",
     "color": "#202326",
     "textColor": "#ffffff",
+    "informationUrl": "https://ratsinfo.rothenburg.de/fraktionen",
     "seats": 7,
     "partyIds": [
       "csu"
@@ -16,6 +17,7 @@
     "shortName": "UR",
     "color": "#55717f",
     "textColor": "#ffffff",
+    "informationUrl": "https://ratsinfo.rothenburg.de/fraktionen",
     "seats": 3
   },
   {
@@ -24,6 +26,7 @@
     "shortName": "FRV",
     "color": "#b78b2e",
     "textColor": "#1c1608",
+    "informationUrl": "https://ratsinfo.rothenburg.de/fraktionen",
     "seats": 5
   },
   {
@@ -32,6 +35,7 @@
     "shortName": "Grüne",
     "color": "#46962b",
     "textColor": "#ffffff",
+    "informationUrl": "https://ratsinfo.rothenburg.de/fraktionen",
     "seats": 3
   },
   {
@@ -40,6 +44,7 @@
     "shortName": "SPD",
     "color": "#e3000f",
     "textColor": "#ffffff",
+    "informationUrl": "https://ratsinfo.rothenburg.de/fraktionen",
     "seats": 6
   }
 ]
