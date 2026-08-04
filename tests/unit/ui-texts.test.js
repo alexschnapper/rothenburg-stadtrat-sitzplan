@@ -85,6 +85,9 @@ describe("UI-Texte", () => {
       "explanation.overviewText",
 
       "footer.versionLabel",
+      "footer.buildLabel",
+      "footer.buildDateLabel",
+      "footer.localBuildHint",
       "footer.repositoryLink",
 
       "errors.dataLoadTitle",

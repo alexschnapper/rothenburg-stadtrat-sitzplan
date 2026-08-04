@@ -10,8 +10,11 @@ Die Versionsnummern folgen [Semantic Versioning](https://semver.org/lang/de/).
 ### Added
 
 - Footer mit aktueller Versionsnummer und Link zum GitHub-Repository
+- automatisch erzeugte Buildnummer und Build-Datum im Footer
 
 ### Changed
+
+- GitHub Pages wird über einen eigenen Deployment-Workflow veröffentlicht
 
 ### Fixed
 

@@ -15,6 +15,7 @@
 | [CHANGELOG.md](CHANGELOG.md) | Änderungen je Version |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Lokale Entwicklung |
 | [docs/data-model.md](docs/data-model.md) | Datenmodell und Architektur |
+| [docs/build-information.md](docs/build-information.md) | Versions- und Buildinformationen |
 
 Referenzimplementierung für den Stadtrat Rothenburg ob der Tauber.
 
@@ -98,6 +99,7 @@ tests/
 Dieses Projekt folgt einigen einfachen Grundsätzen:
 
 - 📦 Eine Datenquelle pro Information (*Single Source of Truth*)
+- 🏷️ Release-Version aus `package.json`, Buildinformationen aus GitHub Actions
 - 🧩 Trennung von Daten und Darstellung
 - 🏛️ Raumkonfiguration über `room.json`
 - 🧪 Automatisierte Tests mit Vitest und Playwright

@@ -9,6 +9,20 @@ async function loadJson(path) {
   return response.json();
 }
 
+async function loadOptionalJson(path) {
+  const response = await fetch(path);
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error(`${path} konnte nicht geladen werden.`);
+  }
+
+  return response.json();
+}
+
 function valueAtPath(source, path) {
   return path
     .split(".")
@@ -80,16 +94,47 @@ function applyUiTexts(texts) {
     });
 }
 
-function applyProjectMetadata(metadata) {
+function applyProjectMetadata(metadata, buildInfo) {
   const version = document.getElementById("appVersion");
+
+  const projectVersion =
+    typeof metadata.version === "string"
+      ? metadata.version.trim()
+      : "";
 
   if (
     version &&
-    typeof metadata.version === "string" &&
-    metadata.version.trim()
+    projectVersion
   ) {
-    version.textContent = `v${metadata.version}`;
+    version.textContent = `v${projectVersion}`;
   }
+
+  const hasValidBuildInfo = Boolean(
+    buildInfo &&
+    buildInfo.version === projectVersion &&
+    /^\d+$/.test(buildInfo.buildNumber) &&
+    /^\d{2}\.\d{2}\.\d{4}$/.test(buildInfo.buildDate)
+  );
+
+  if (!hasValidBuildInfo) {
+    return;
+  }
+
+  document.getElementById(
+    "appBuildNumber"
+  ).textContent = buildInfo.buildNumber;
+
+  document.getElementById(
+    "appBuildDate"
+  ).textContent = buildInfo.buildDate;
+
+  document.getElementById(
+    "buildDetails"
+  ).hidden = false;
+
+  document.getElementById(
+    "localBuildHint"
+  ).hidden = true;
 }
 
 function svgEl(name, attrs = {}) {
@@ -1084,7 +1129,8 @@ async function init() {
       officials,
       room,
       loadedUiTexts,
-      projectMetadata
+      projectMetadata,
+      buildInfo
     ] = await Promise.all([
       loadJson("data/factions.json"),
       loadJson("data/people.json"),
@@ -1092,12 +1138,13 @@ async function init() {
       loadJson("data/officials.json"),
       loadJson("data/room.json"),
       loadJson("data/ui-texts.json"),
-      loadJson("package.json")
+      loadJson("package.json"),
+      loadOptionalJson("data/build-info.json")
     ]);
 
     uiTexts = loadedUiTexts;
     applyUiTexts(uiTexts);
-    applyProjectMetadata(projectMetadata);
+    applyProjectMetadata(projectMetadata, buildInfo);
 
     renderLegend(factions);
 

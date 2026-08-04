@@ -10,7 +10,9 @@ test("lädt die Sitzplanseite", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("zeigt Version und GitHub-Link im Footer", async ({ page }) => {
+test("zeigt lokal Version und Entwicklungshinweis im Footer", async ({
+  page
+}) => {
   await page.goto("/");
 
   const footer = page.getByRole("contentinfo");
@@ -18,11 +20,51 @@ test("zeigt Version und GitHub-Link im Footer", async ({ page }) => {
   await expect(footer.locator("#appVersion")).toHaveText("v0.4.0");
 
   await expect(
+    footer.locator("#localBuildHint")
+  ).toContainText("Lokale Entwicklung");
+
+  await expect(
+    footer.locator("#buildDetails")
+  ).toBeHidden();
+
+  await expect(
     footer.getByRole("link", { name: "Projekt auf GitHub" })
   ).toHaveAttribute(
     "href",
     "https://github.com/alexschnapper/rothenburg-stadtrat-sitzplan"
   );
+});
+
+test("zeigt automatisch erzeugte Buildinformationen", async ({
+  page
+}) => {
+  await page.route("**/data/build-info.json", async (route) => {
+    await route.fulfill({
+      json: {
+        version: "0.4.0",
+        buildNumber: "42",
+        buildDate: "04.08.2026"
+      }
+    });
+  });
+
+  await page.goto("/");
+
+  const footer = page.getByRole("contentinfo");
+
+  await expect(footer.locator("#appVersion")).toHaveText("v0.4.0");
+  await expect(footer.locator("#appBuildNumber")).toHaveText("42");
+  await expect(footer.locator("#appBuildDate")).toHaveText(
+    "04.08.2026"
+  );
+
+  await expect(
+    footer.locator("#buildDetails")
+  ).toContainText("Build 42 · Stand 04.08.2026");
+
+  await expect(
+    footer.locator("#localBuildHint")
+  ).toBeHidden();
 });
 
 test("zeigt genau 24 Stadtratssitze", async ({ page }) => {
