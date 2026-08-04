@@ -80,6 +80,18 @@ function applyUiTexts(texts) {
     });
 }
 
+function applyProjectMetadata(metadata) {
+  const version = document.getElementById("appVersion");
+
+  if (
+    version &&
+    typeof metadata.version === "string" &&
+    metadata.version.trim()
+  ) {
+    version.textContent = `v${metadata.version}`;
+  }
+}
+
 function svgEl(name, attrs = {}) {
   const element = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -1071,18 +1083,21 @@ async function init() {
       councilSeats,
       officials,
       room,
-      loadedUiTexts
+      loadedUiTexts,
+      projectMetadata
     ] = await Promise.all([
       loadJson("data/factions.json"),
       loadJson("data/people.json"),
       loadJson("data/council-seats.json"),
       loadJson("data/officials.json"),
       loadJson("data/room.json"),
-      loadJson("data/ui-texts.json")
+      loadJson("data/ui-texts.json"),
+      loadJson("package.json")
     ]);
 
     uiTexts = loadedUiTexts;
     applyUiTexts(uiTexts);
+    applyProjectMetadata(projectMetadata);
 
     renderLegend(factions);
 
