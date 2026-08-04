@@ -322,7 +322,7 @@ function setSvgTextLines(
 
 function clearSelectedElements() {
   document
-    .querySelectorAll(".seat, .official")
+    .querySelectorAll(".seat, .faction-area, .official")
     .forEach((element) => {
       element.setAttribute("aria-pressed", "false");
     });
@@ -541,6 +541,7 @@ function showDetailsPanel({
   badgeTextColor,
   name,
   detailText,
+  seatLabel = uiText("details.seatLabel", "Sitz"),
   seat,
   categoryLabel,
   categoryValue,
@@ -571,6 +572,10 @@ function showDetailsPanel({
   document.getElementById(
     "detailRole"
   ).textContent = detailText;
+
+  document.getElementById(
+    "detailSeatLabel"
+  ).textContent = seatLabel;
 
   document.getElementById(
     "detailSeat"
@@ -684,6 +689,17 @@ function showPersonInMonitor(person, faction) {
   monitorDetails.setAttribute(
     "aria-hidden",
     "false"
+  );
+}
+
+function showFactionInMonitor(faction) {
+  showPersonInMonitor(
+    {
+      name: faction.name,
+      office: `${faction.seats} ${uiText("details.membersLabel", "Mitglieder")}`,
+      roles: []
+    },
+    faction
   );
 }
 
@@ -835,6 +851,27 @@ function showPerson(
   });
 
   showPersonInMonitor(person, faction);
+  updateMobileMonitorHint(true);
+}
+
+function showFaction(faction, areaNode) {
+  clearSelectedElements();
+
+  areaNode.setAttribute("aria-pressed", "true");
+
+  showDetailsPanel({
+    badgeText: faction.shortName,
+    badgeColor: faction.color,
+    badgeTextColor: faction.textColor,
+    name: faction.name,
+    detailText: "Fraktionsbereich im Sitzungssaal",
+    seatLabel: uiText("details.membersLabel", "Mitglieder"),
+    seat: String(faction.seats),
+    categoryLabel: uiText("details.factionLabel", "Fraktion"),
+    categoryValue: faction.shortName
+  });
+
+  showFactionInMonitor(faction);
   updateMobileMonitorHint(true);
 }
 
@@ -1116,6 +1153,90 @@ function renderCouncilSeats(
   });
 }
 
+function renderFactionAreas(factions, factionAreas) {
+  const layer = document.getElementById("seatsLayer");
+
+  if (!layer) {
+    throw new Error(
+      "Das SVG-Element #seatsLayer wurde nicht gefunden."
+    );
+  }
+
+  if (!Array.isArray(factionAreas)) {
+    throw new Error("room.factionAreas muss ein Array sein.");
+  }
+
+  layer.replaceChildren();
+
+  [...factionAreas]
+    .sort((first, second) => first.order - second.order)
+    .forEach((area) => {
+      const faction = factionFor(area.factionId, factions);
+
+      if (!faction || !Array.isArray(area.segments)) {
+        console.warn(`Ungültiger Fraktionsbereich ${area.id}.`);
+        return;
+      }
+
+      const group = svgEl("g", {
+        class: "faction-area",
+        tabindex: "0",
+        role: "button",
+        "aria-label": `${faction.name}, ${faction.seats} Mitglieder`,
+        "aria-pressed": "false"
+      });
+
+      area.segments.forEach((segment) => {
+        group.appendChild(svgEl("rect", {
+          class: "faction-area-segment",
+          x: String(segment.x),
+          y: String(segment.y),
+          width: String(segment.width),
+          height: String(segment.height),
+          rx: String(segment.radius),
+          fill: faction.color
+        }));
+      });
+
+      const segment = area.segments[0];
+      const centerX = segment.x + segment.width / 2;
+      const centerY = segment.y + segment.height / 2;
+      const label = svgEl("text", {
+        class: "faction-area-label",
+        x: String(centerX),
+        y: String(centerY - 7),
+        fill: faction.textColor
+      });
+      const shortName = svgEl("tspan", {
+        x: String(centerX),
+        dy: "0"
+      });
+      shortName.textContent = faction.shortName.toUpperCase();
+      const count = svgEl("tspan", {
+        class: "faction-area-count",
+        x: String(centerX),
+        dy: "22"
+      });
+      count.textContent = `${faction.seats} Sitze`;
+      label.append(shortName, count);
+
+      const title = svgEl("title");
+      title.textContent = `${faction.name} – ${faction.seats} Mitglieder`;
+      group.append(label, title);
+
+      const selectArea = () => showFaction(faction, group);
+      group.addEventListener("click", selectArea);
+      group.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectArea();
+        }
+      });
+
+      layer.appendChild(group);
+    });
+}
+
 /*
  * Initialisierung
  */
@@ -1153,12 +1274,16 @@ async function init() {
       people
     );
 
-    renderCouncilSeats(
-      people,
-      councilSeats,
-      factions,
-      room.seatPositions
-    );
+    if (Array.isArray(room.factionAreas)) {
+      renderFactionAreas(factions, room.factionAreas);
+    } else {
+      renderCouncilSeats(
+        people,
+        councilSeats,
+        factions,
+        room.seatPositions
+      );
+    }
 
     document
       .getElementById(
