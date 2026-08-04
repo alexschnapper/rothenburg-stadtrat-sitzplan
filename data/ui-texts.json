@@ -54,6 +54,9 @@
     },
     "footer": {
       "versionLabel": "Version",
+      "buildLabel": "Build",
+      "buildDateLabel": "Stand",
+      "localBuildHint": "Lokale Entwicklung",
       "repositoryLink": "Projekt auf GitHub"
     },
     "errors": {
