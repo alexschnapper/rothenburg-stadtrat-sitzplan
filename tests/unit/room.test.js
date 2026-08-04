@@ -10,6 +10,7 @@ function readJson(path) {
 
 const room = readJson("data/room.json");
 const councilSeats = readJson("data/council-seats.json");
+const factions = readJson("data/factions.json");
 
 describe("Raumkonfiguration", () => {
   test("enthält die erwarteten Hauptbereiche", () => {
@@ -35,6 +36,43 @@ describe("Raumkonfiguration", () => {
 
     expect(room.viewBox.width).toBeGreaterThan(0);
     expect(room.viewBox.height).toBeGreaterThan(0);
+  });
+
+  test("verwendet das bereichsbasierte Schema Version 2", () => {
+    expect(room.metadata.schemaVersion).toBe(2);
+    expect(room.factionAreas).toHaveLength(5);
+  });
+
+  test("referenziert jeden Fraktionsbereich eindeutig", () => {
+    const factionIds = new Set(
+      factions.map((faction) => faction.id)
+    );
+    const areaIds = room.factionAreas.map((area) => area.id);
+    const orders = room.factionAreas.map((area) => area.order);
+
+    expect(new Set(areaIds).size).toBe(areaIds.length);
+    expect(new Set(orders).size).toBe(orders.length);
+
+    for (const area of room.factionAreas) {
+      expect(factionIds.has(area.factionId)).toBe(true);
+      expect(area.segments.length).toBeGreaterThan(0);
+    }
+  });
+
+  test("hält alle Fraktionssegmente innerhalb der ViewBox", () => {
+    for (const area of room.factionAreas) {
+      for (const segment of area.segments) {
+        expect(segment.width).toBeGreaterThan(0);
+        expect(segment.height).toBeGreaterThan(0);
+        expect(segment.radius).toBeGreaterThanOrEqual(0);
+        expect(segment.x).toBeGreaterThanOrEqual(0);
+        expect(segment.y).toBeGreaterThanOrEqual(0);
+        expect(segment.x + segment.width)
+          .toBeLessThanOrEqual(room.viewBox.width);
+        expect(segment.y + segment.height)
+          .toBeLessThanOrEqual(room.viewBox.height);
+      }
+    }
   });
 
   test("enthält die drei erwarteten Sitzreihen", () => {
