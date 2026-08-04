@@ -29,6 +29,7 @@ describe("UI-Texte", () => {
         "display",
         "errors",
         "explanation",
+        "footer",
         "legend",
         "page",
         "seatmap"
@@ -82,6 +83,9 @@ describe("UI-Texte", () => {
 
       "explanation.overviewTitle",
       "explanation.overviewText",
+
+      "footer.versionLabel",
+      "footer.repositoryLink",
 
       "errors.dataLoadTitle",
       "errors.dataLoadText",
