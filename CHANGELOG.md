@@ -9,6 +9,8 @@ Die Versionsnummern folgen [Semantic Versioning](https://semver.org/lang/de/).
 
 ### Added
 
+- Footer mit aktueller Versionsnummer und Link zum GitHub-Repository
+
 ### Changed
 
 ### Fixed
