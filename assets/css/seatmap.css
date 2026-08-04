@@ -560,8 +560,9 @@ dd {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  margin-top: 24px;
-  padding: 18px 4px 0;
+  width: min(1320px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 18px 4px 36px;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.9rem;
@@ -748,7 +749,8 @@ code {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
-    margin: 22px 18px 0;
-    padding-top: 16px;
+    width: auto;
+    margin: 0 18px;
+    padding: 16px 0 24px;
   }
 }
