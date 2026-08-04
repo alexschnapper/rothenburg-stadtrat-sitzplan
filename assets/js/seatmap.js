@@ -1236,9 +1236,28 @@ function renderFactionAreas(factions, factionAreas) {
       count.textContent = `${faction.seats} Sitze`;
       label.append(shortName, count);
 
+      const selectionX = segment.x + segment.width - 10;
+      const selectionY = segment.y + 15;
+      const selection = svgEl("g", {
+        class: "faction-area-selection",
+        "aria-hidden": "true"
+      });
+      const selectionCircle = svgEl("circle", {
+        cx: String(selectionX),
+        cy: String(selectionY),
+        r: "13"
+      });
+      const selectionCheck = svgEl("path", {
+        d:
+          `M ${selectionX - 6} ${selectionY} ` +
+          `L ${selectionX - 1} ${selectionY + 5} ` +
+          `L ${selectionX + 7} ${selectionY - 5}`
+      });
+      selection.append(selectionCircle, selectionCheck);
+
       const title = svgEl("title");
       title.textContent = `${faction.name} – ${faction.seats} Mitglieder`;
-      group.append(label, title);
+      group.append(label, selection, title);
 
       const selectArea = () => showFaction(faction, group);
       group.addEventListener("click", selectArea);
