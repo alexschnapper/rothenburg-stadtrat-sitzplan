@@ -41,8 +41,8 @@
         data-ui-text="page.lead"
       >
         Die Darstellung orientiert sich am tatsächlichen Sitzungssaal
-        aus Sicht der Besuchertribüne. Einen Sitz anklicken oder mit der
-        Tastatur auswählen, um Details anzuzeigen.
+        aus Sicht der Besuchertribüne. Einen Fraktionsbereich anklicken
+        oder mit der Tastatur auswählen, um Details anzuzeigen.
       </p>
     </header>
 
@@ -93,8 +93,8 @@
               id="svg-desc"
               data-ui-text="seatmap.svgDescription"
             >
-              U-förmige Sitzordnung mit 24 nach Fraktionen eingefärbten
-              Sitzen, Stadtspitze, Verwaltung, Gästeplätzen und einer
+              U-förmige Sitzordnung mit fünf farbigen Fraktionsbereichen,
+              Stadtspitze, Verwaltung, Gästeplätzen und einer
               Informationsanzeige in der Mitte.
             </desc>
 
@@ -271,7 +271,7 @@
                 text-anchor="middle"
                 data-ui-text="display.defaultHint"
               >
-                Bitte einen Sitz auswählen
+                Bitte einen Fraktionsbereich auswählen
               </text>
             </g>
 
@@ -329,10 +329,10 @@
               </text>
             </g>
 
-            <!-- Die 24 Stadtratssitze werden per JavaScript erzeugt -->
+            <!-- Die Fraktionsbereiche werden per JavaScript erzeugt -->
             <g
               id="seatsLayer"
-              aria-label="Gewählte Mitglieder des Stadtrats"
+              aria-label="Fraktionsbereiche des Stadtrats"
               data-ui-aria-label="seatmap.councilSeatsAriaLabel"
             ></g>
 
@@ -371,12 +371,12 @@
             </span>
 
             <h3 data-ui-text="details.emptyTitle">
-              Sitz auswählen
+              Fraktion auswählen
             </h3>
 
             <p data-ui-text="details.emptyText">
-              Einen Sitz auswählen, um Informationen zur Person,
-              Fraktion oder Funktion anzuzeigen.
+              Einen Fraktionsbereich auswählen, um Informationen zur
+              Fraktion anzuzeigen.
             </p>
           </div>
 
@@ -395,7 +395,7 @@
 
             <dl>
               <div>
-                <dt data-ui-text="details.seatLabel">Sitz</dt>
+                <dt id="detailSeatLabel" data-ui-text="details.seatLabel">Sitz</dt>
                 <dd id="detailSeat"></dd>
               </div>
 
