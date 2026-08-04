@@ -391,6 +391,43 @@ h1 {
 
 /* Stadtratssitze */
 
+.faction-area {
+  cursor: pointer;
+  outline: none;
+}
+
+.faction-area-segment {
+  stroke: rgba(255, 255, 255, 0.94);
+  stroke-width: 3;
+  transition:
+    filter 0.16s ease,
+    stroke-width 0.16s ease;
+}
+
+.faction-area-label {
+  pointer-events: none;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.faction-area-count {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.faction-area:hover .faction-area-segment,
+.faction-area:focus .faction-area-segment,
+.faction-area[aria-pressed="true"] .faction-area-segment {
+  filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.24));
+  stroke-width: 7;
+}
+
+.faction-area:focus-visible .faction-area-segment {
+  stroke: var(--focus);
+}
+
 .seat {
   cursor: pointer;
   outline: none;
