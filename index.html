@@ -461,9 +461,28 @@
   </main>
 
   <footer class="site-footer">
-    <p>
+    <p class="build-information">
       <span data-ui-text="footer.versionLabel">Version</span>
       <span id="appVersion">v0.4.0</span>
+
+      <span
+        id="buildDetails"
+        hidden
+      >
+        <span aria-hidden="true">·</span>
+        <span data-ui-text="footer.buildLabel">Build</span>
+        <span id="appBuildNumber"></span>
+        <span aria-hidden="true">·</span>
+        <span data-ui-text="footer.buildDateLabel">Stand</span>
+        <span id="appBuildDate"></span>
+      </span>
+
+      <span id="localBuildHint">
+        <span aria-hidden="true">·</span>
+        <span data-ui-text="footer.localBuildHint">
+          Lokale Entwicklung
+        </span>
+      </span>
     </p>
 
     <a
