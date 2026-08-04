@@ -4,7 +4,7 @@
     "description": "Interaktiver Sitzplan des Stadtrats Rothenburg ob der Tauber",
     "eyebrow": "Kommunalpolitik verständlich dargestellt",
     "title": "Sitzordnung des Rothenburger Stadtrats",
-    "lead": "Die Darstellung orientiert sich am tatsächlichen Sitzungssaal aus Sicht der Besuchertribüne. Einen Sitz anklicken oder mit der Tastatur auswählen, um Details anzuzeigen."
+    "lead": "Die Darstellung orientiert sich am tatsächlichen Sitzungssaal aus Sicht der Besuchertribüne. Einen Fraktionsbereich anklicken oder mit der Tastatur auswählen, um Details anzuzeigen."
   },
   "seatmap": {
     "title": "Großer Sitzungssaal",
@@ -12,22 +12,23 @@
     "officialsLabel": "STADTSPITZE UND VERWALTUNG",
     "resetButton": "Auswahl zurücksetzen",
     "svgTitle": "Sitzordnung des Stadtrats Rothenburg ob der Tauber",
-    "svgDescription": "U-förmige Sitzordnung mit 24 nach Fraktionen eingefärbten Sitzen, Stadtspitze, Verwaltung, Gästeplätzen und einer Informationsanzeige in der Mitte.",
+    "svgDescription": "U-förmige Sitzordnung mit fünf farbigen Fraktionsbereichen, Stadtspitze, Verwaltung, Gästeplätzen und einer Informationsanzeige in der Mitte.",
     "officialsAriaLabel": "Stadtspitze, Verwaltung und geladene Gäste",
-    "councilSeatsAriaLabel": "Gewählte Mitglieder des Stadtrats"
+    "councilSeatsAriaLabel": "Fraktionsbereiche des Stadtrats"
   },
   "display": {
     "eyebrow": "INFORMATIONSSYSTEM",
     "title": "Rothenburg ob der Tauber",
     "description": "Informationen zur Sitzordnung",
-    "defaultHint": "Bitte einen Sitz auswählen",
+    "defaultHint": "Bitte einen Fraktionsbereich auswählen",
     "mobileSelectionHint": "Details unterhalb des Sitzplans",
     "detailHint": "Weitere Details im Informationsbereich"
   },
   "details": {
-    "emptyTitle": "Sitz auswählen",
-    "emptyText": "Einen Sitz auswählen, um Informationen zur Person, Fraktion oder Funktion anzuzeigen.",
+    "emptyTitle": "Fraktion auswählen",
+    "emptyText": "Einen Fraktionsbereich auswählen, um Informationen zur Fraktion anzuzeigen.",
     "seatLabel": "Sitz",
+    "membersLabel": "Mitglieder",
     "placeLabel": "Platz",
     "factionLabel": "Fraktion",
     "areaLabel": "Bereich",
