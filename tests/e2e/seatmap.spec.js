@@ -297,7 +297,7 @@ test("zeigt einen zentralen Informationsbildschirm", async ({
     page.locator("#monitorDefault")
   ).not.toHaveAttribute("hidden", "");
 });
-test("behält den Displayrahmen nach Personenauswahl", async ({
+test("behält den Displayrahmen nach Fraktionsauswahl", async ({
   page
 }) => {
   test.skip(
@@ -307,7 +307,7 @@ test("behält den Displayrahmen nach Personenauswahl", async ({
 
   await page.goto("/");
 
-  await page.locator(".seat").first().click();
+  await page.locator(".faction-area").first().click();
 
   await expect(
     page.locator("#centralDisplayFrame")
@@ -334,10 +334,10 @@ test("aktualisiert mobil den Hinweis im zentralen Display", async ({
   const hint = page.locator("#monitorDefaultHint");
 
   await expect(hint).toHaveText(
-    "Bitte einen Sitz auswählen"
+    "Bitte einen Fraktionsbereich auswählen"
   );
 
-  await page.locator(".seat").first().click();
+  await page.locator(".faction-area").first().click();
 
   await expect(hint).toHaveText(
     "Details unterhalb des Sitzplans"
@@ -363,7 +363,7 @@ test("setzt mobil den Monitorhinweis zurück", async ({
 
   const hint = page.locator("#monitorDefaultHint");
 
-  await page.locator(".seat").first().click();
+  await page.locator(".faction-area").first().click();
 
   await expect(hint).toHaveText(
     "Details unterhalb des Sitzplans"
@@ -374,6 +374,6 @@ test("setzt mobil den Monitorhinweis zurück", async ({
     .click();
 
   await expect(hint).toHaveText(
-    "Bitte einen Sitz auswählen"
+    "Bitte einen Fraktionsbereich auswählen"
   );
 });
