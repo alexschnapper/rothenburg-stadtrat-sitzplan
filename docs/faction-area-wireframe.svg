@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 920" role="img" aria-labelledby="title desc">
+  <title id="title">Vorschlag für Fraktionsbereiche im Rothenburger Sitzungssaal</title>
+  <desc id="desc">U-förmige Tischanlage mit fünf abgerundeten Fraktionsbereichen, zentralem Informationsbildschirm und Informationsbereich.</desc>
+  <rect width="1040" height="920" fill="#f5f1e9"/>
+  <text x="410" y="38" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="700" fill="#746b60" letter-spacing="2">STADTSPITZE UND VERWALTUNG</text>
+  <path d="M120 70 Q95 70 95 95 V775 Q95 800 120 800 H700 Q725 800 725 775 V95 Q725 70 700 70 Z M215 170 V650 Q215 675 240 675 H580 Q605 675 605 650 V170 Z" fill="#bf8557" fill-rule="evenodd" stroke="#805639" stroke-width="3"/>
+  <g font-family="system-ui, sans-serif" text-anchor="middle">
+    <g>
+      <rect x="126" y="182" width="68" height="300" rx="24" fill="#202326" stroke="#ffffff" stroke-width="3"/>
+      <text x="160" y="322" fill="#ffffff" font-size="18" font-weight="800">CSU</text>
+      <text x="160" y="350" fill="#ffffff" font-size="14">7 Mitglieder</text>
+    </g>
+    <g>
+      <rect x="126" y="500" width="68" height="132" rx="24" fill="#55717f" stroke="#ffffff" stroke-width="3"/>
+      <text x="160" y="558" fill="#ffffff" font-size="18" font-weight="800">UR</text>
+      <text x="160" y="584" fill="#ffffff" font-size="14">3</text>
+    </g>
+    <g>
+      <rect x="252" y="695" width="316" height="68" rx="24" fill="#b78b2e" stroke="#1c1608" stroke-width="3"/>
+      <text x="410" y="724" fill="#1c1608" font-size="18" font-weight="800">FRV</text>
+      <text x="410" y="748" fill="#1c1608" font-size="14">5 Mitglieder</text>
+    </g>
+    <g>
+      <rect x="626" y="500" width="68" height="132" rx="24" fill="#46962b" stroke="#ffffff" stroke-width="3"/>
+      <text x="660" y="558" fill="#ffffff" font-size="16" font-weight="800">GRÜNE</text>
+      <text x="660" y="584" fill="#ffffff" font-size="14">3</text>
+    </g>
+    <g>
+      <rect x="626" y="224" width="68" height="258" rx="24" fill="#e3000f" stroke="#ffffff" stroke-width="3"/>
+      <text x="660" y="344" fill="#ffffff" font-size="18" font-weight="800">SPD</text>
+      <text x="660" y="372" fill="#ffffff" font-size="14">6</text>
+    </g>
+  </g>
+  <g font-family="system-ui, sans-serif">
+    <rect x="268" y="238" width="284" height="214" rx="20" fill="#4d4a46"/>
+    <rect x="284" y="254" width="252" height="182" rx="12" fill="#ffffff" stroke="#d7d1c8" stroke-width="2"/>
+    <rect x="284" y="254" width="10" height="182" rx="5" fill="#46962b"/>
+    <text x="316" y="306" font-size="15" font-weight="800" fill="#46962b">AUSGEWÄHLTE FRAKTION</text>
+    <text x="316" y="350" font-size="25" font-weight="800" fill="#24211e">Bündnis 90/Die Grünen</text>
+    <text x="316" y="386" font-size="16" fill="#625d56">3 Mitglieder</text>
+    <text x="316" y="414" font-size="14" font-weight="700" fill="#8a691e">Mitglieder rechts anzeigen</text>
+  </g>
+  <g font-family="system-ui, sans-serif">
+    <rect x="760" y="70" width="240" height="730" rx="24" fill="#ffffff" stroke="#ded7ca" stroke-width="2"/>
+    <text x="788" y="120" font-size="13" font-weight="800" fill="#46962b" letter-spacing="1">GRÜNE · 3 MITGLIEDER</text>
+    <text x="788" y="160" font-size="22" font-weight="800" fill="#24211e">Fraktionsmitglieder</text>
+    <g fill="#24211e" font-size="16">
+      <text x="788" y="210">Mitglied 1</text>
+      <text x="788" y="252">Mitglied 2</text>
+      <text x="788" y="294">Mitglied 3</text>
+    </g>
+    <text x="788" y="348" font-size="13" fill="#6c6861">Person auswählen, um</text>
+    <text x="788" y="368" font-size="13" fill="#6c6861">weitere Details anzuzeigen.</text>
+  </g>
+  <path d="M245 850 Q410 820 575 850" fill="none" stroke="#746b60" stroke-width="3"/>
+  <text x="410" y="882" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="800" fill="#746b60" letter-spacing="1.5">BESUCHERTRIBÜNE</text>
+</svg>
